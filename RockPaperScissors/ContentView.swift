@@ -17,49 +17,77 @@ struct ContentView: View {
 	@State private var usersChoice = ""
 	@State private var computersChoice = ""
 	
+	@State private var timeRemaining = 3
+	let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+	@State private var timerIsRunning = false
+	
 	let imagesNames = ["rock", "paper", "scissors"]
 	
-	let timerDelay: Double = 2
+	let timerDelay: Double = 1
 
 	
     var body: some View {
 			ZStack {
 				LinearGradient(colors: [Color(red: 0.7, green: 0.04, blue: 0.3), Color(red: 1, green: 0.98, blue: 0.84)], startPoint: .top, endPoint: .bottom)
 				
-					VStack(spacing: 60) {
-						
-						VStack (spacing: 20) {
-							//					Change the text to an empty string after the choice was made
-//							Text(userChoseSomething ? "" : "Make your choice")
-//										.font(.title.weight(.semibold))
-//										.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
-
-				//					Let the text appear after the round is finished to tell the player who won
-									
-
-							if userChoseSomething && isFinishedInADraw {
-								Text("It's a draw")
-									.outcomeTitleStyle()
-							} else if userChoseSomething && userWon {
-								Text("You won")
-									.outcomeTitleStyle()
-							} else if userChoseSomething && !userWon {
-								Text("You lost")
-									.outcomeTitleStyle()
-							} else {
-								Text("Make your choice")
-									.opacity(0)
-									.outcomeTitleStyle()
-							}
-
-
+					VStack(spacing: 40) {
+											
+						Group {
+							Spacer()
+							Spacer()
 						}
+
+						Button {
+							startCountdown()
+						} label: {
+							Text(String(timeRemaining))
+								.onChange(of: timeRemaining) { _ in
+//										Apply changes to the text view during every second of the countdown
+
+								}
+								.countdownModifier()
+								.onReceive(timer) { _ in
+
+									if timerIsRunning && timeRemaining >= 1 {
+										timeRemaining -= 1
+									} else {
+										timerIsRunning = false
+									}
+								}
+						}
+						
+						
+						if timerIsRunning {
+							Text("timer is running")
+								.opacity(0)
+								.animation(.easeInOut(duration: 1))
+								.outcomeTitleStyle()
+						} else {
+							Text("timer stopped")
+								.outcomeTitleStyle()
+						}
+							
+
+//							if userChoseSomething && isFinishedInADraw {
+//								Text("It's a draw")
+//									.outcomeTitleStyle()
+//							} else if userChoseSomething && userWon {
+//								Text("You won")
+//									.outcomeTitleStyle()
+//							} else if userChoseSomething && !userWon {
+//								Text("You lost")
+//									.outcomeTitleStyle()
+//							} else {
+//								Text("Make your choice")
+//									.opacity(0)
+//									.outcomeTitleStyle()
+//							}
 
 						Image(computersChoice)
 							.resizable()
 							.frame(width: 80, height: 80)
 							
-							.animation(.easeInOut(duration: timerDelay))
+							.animation(.easeInOut(duration: 0.5))
 						
 							.padding()
 							.background(.regularMaterial)
@@ -70,33 +98,30 @@ struct ContentView: View {
 						
 						HStack (spacing: 30){
 							ForEach(imagesNames, id: \.self) { obj in
-								
+				
 								Button {
 									chooseAnObject(userObj: obj, computerObj: imagesNames.randomElement()!)
-
 								} label: {
 									Image(obj)
 										.resizable()
 								}
-
-
-								
 								.frame(width: 50, height: 50)
 								.padding()
 								.background(.ultraThinMaterial)
 								.clipShape(Circle())
-				
-								
 							}
 						}
+						
+						Spacer()
 						
 						Text("score: \(userScore)")
 							.font(.title2.weight(.medium))
 							.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
 						
+						Spacer()
+						
 					}
 				
-
 			}
 			.ignoresSafeArea()
 
@@ -171,6 +196,15 @@ struct ContentView: View {
 		}
 	}
 	
+	func startCountdown() -> Void {
+		timeRemaining = 3
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			timerIsRunning = true
+		}
+
+	}
+	
 }
 
 struct OutcomeTitle: ViewModifier {
@@ -183,9 +217,26 @@ struct OutcomeTitle: ViewModifier {
 	}
 }
 
+struct Countdown: ViewModifier {
+	
+	
+	func body(content: Content) -> some View {
+		content
+			.frame(width: 110, height: 110)
+			.background(.ultraThinMaterial)
+			.clipShape(Circle())
+			.font(.system(size: 100, weight: .bold))
+			.opacity(0.7)
+			.foregroundColor(.purple)
+	}
+}
+
 extension View {
 	func outcomeTitleStyle() -> some View {
 		modifier(OutcomeTitle())
+	}
+	func countdownModifier() -> some View {
+		modifier(Countdown())
 	}
 }
 
