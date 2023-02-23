@@ -22,9 +22,18 @@ struct ContentView: View {
 	let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 	@State private var timerIsRunning = false
 	
-	let imagesNames = ["rock", "paper", "scissors", "lizard", "spock"]
+//	let imagesNames = ["rock", "paper", "scissors", "lizard", "spock"]
 	
 	let timerDelay: Double = 1
+	
+	enum ChoiceOption: String, CaseIterable {
+		case rock = "rock"
+		case paper = "paper"
+		case scissors = "scissors"
+		case lizard = "lizard"
+		case spock = "spock"
+//		case empty = ""
+	}
 
 	
     var body: some View {
@@ -38,24 +47,24 @@ struct ContentView: View {
 							Spacer()
 						}
 
-						Button {
-							startCountdown()
-						} label: {
-							Text(timeRemaining > 0 ? String(timeRemaining) : "GO!")
-								.onChange(of: timeRemaining) { _ in
-//										Apply changes to the text view during every second of the countdown
-
-								}
-								.onReceive(timer) { _ in
-
-									if timerIsRunning && timeRemaining >= 0 {
-										timeRemaining -= 1
-									} else {
-										timerIsRunning = false
-									}
-								}
-								.countdownModifier()
-						}
+//						Button {
+//							startCountdown()
+//						} label: {
+//							Text(timeRemaining > 0 ? String(timeRemaining) : "GO!")
+//								.onChange(of: timeRemaining) { _ in
+////										Apply changes to the text view during every second of the countdown
+//
+//								}
+//								.onReceive(timer) { _ in
+//
+//									if timerIsRunning && timeRemaining >= 0 {
+//										timeRemaining -= 1
+//									} else {
+//										timerIsRunning = false
+//									}
+//								}
+//								.countdownModifier()
+//						}
 						
 						
 						if timeRemaining > 0 && userChoseSomething {
@@ -71,25 +80,26 @@ struct ContentView: View {
 								.outcomeTitleStyle()
 						}
 						
-						Image(computersChoice)
-							.resizable()
-							.frame(width: 80, height: 80)
-							
-							.animation(.easeInOut(duration: 0.5))
-						
-							.padding()
-							.background(.regularMaterial)
-							.clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
+						HStack () {
+							Image(systemName: "globe")
+							Spacer()
+							Image(systemName: "globe")
+						}
+						.frame(minWidth: 100, idealWidth: 200, maxWidth: 300, minHeight: 50, idealHeight: 100, maxHeight: 100, alignment: .center)
+						.background(.ultraThinMaterial)
+						.clipShape(RoundedRectangle(cornerRadius: 10))
 						
 						
 	//					Create a frame to store the picture of the computer's choice
-						
+												
 						WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
-							ForEach(imagesNames, id: \.self) { obj in
+							ForEach(ChoiceOption.allCases, id: \.self) { obj in
 								Button {
-									chooseAnObject(userObj: obj, computerObj: imagesNames.randomElement()!)
+									chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
+									print(obj, "here")
+									iterateFunc()
 								} label: {
-									Image(obj)
+									Image(obj.rawValue)
 										.resizable()
 								}
 								.frame(width: 50, height: 50)
@@ -97,10 +107,9 @@ struct ContentView: View {
 								.background(.linearGradient(colors: [.blue, .mint], startPoint: .bottom, endPoint: .top))
 								.clipShape(Circle())
 							}
-						
-						
+							
 						}
-						
+	
 						
 						Text("score: \(userScore)")
 							.font(.title2.weight(.medium))
@@ -115,25 +124,58 @@ struct ContentView: View {
 
     }
 	
-	func chooseAnObject(userObj: String, computerObj: String) {
-		computersChoice = computerObj
+//	func chooseAnObject(userObj: String, computerObj: String) {
+//		print("user chose \(userObj)")
+//		computersChoice = computerObj
+//
+//		if userObj == computerObj {
+//			finishedInADraw()
+//		} else if userObj == "rock" {
+//			if computerObj == "paper" {
+//				computerWins()
+//			} else {
+//				userWins()
+//			}
+//		} else if userObj == "paper" {
+//			if computerObj == "rock" {
+//				userWins()
+//			} else {
+//				computerWins()
+//			}
+//		} else if userObj == "scissors" {
+//			if computerObj == "rock" {
+//				computerWins()
+//			} else {
+//				userWins()
+//			}
+//		}
+//
+//		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
+//			computersChoice = ""
+//		}
+//
+//	}
+	
+	func chooseAnObject(userObj: ChoiceOption, computerObj: ChoiceOption) {
+		print("user chose \(userObj)")
+		computersChoice = computerObj.rawValue
 		
-		if userObj == computerObj {
+		if userObj.rawValue == computerObj.rawValue {
 			finishedInADraw()
-		} else if userObj == "rock" {
-			if computerObj == "paper" {
+		} else if userObj.rawValue == ChoiceOption.rock.rawValue {
+			if computerObj.rawValue == ChoiceOption.paper.rawValue {
 				computerWins()
 			} else {
 				userWins()
 			}
-		} else if userObj == "paper" {
-			if computerObj == "rock" {
+		} else if userObj.rawValue == ChoiceOption.paper.rawValue {
+			if computerObj.rawValue == ChoiceOption.rock.rawValue {
 				userWins()
 			} else {
 				computerWins()
 			}
-		} else if userObj == "scissors" {
-			if computerObj == "rock" {
+		} else if userObj.rawValue == ChoiceOption.scissors.rawValue {
+			if computerObj.rawValue == ChoiceOption.rock.rawValue {
 				computerWins()
 			} else {
 				userWins()
@@ -193,8 +235,13 @@ struct ContentView: View {
 
 	}
 	
-}
-
+	func iterateFunc() {
+		for option in ChoiceOption.allCases {
+			print("here", option)
+		}
+		}
+	}
+	
 struct OutcomeTitle: ViewModifier {
 	func body(content: Content) -> some View {
 		content
@@ -206,7 +253,6 @@ struct OutcomeTitle: ViewModifier {
 }
 
 struct Countdown: ViewModifier {
-	
 	
 	func body(content: Content) -> some View {
 		content
