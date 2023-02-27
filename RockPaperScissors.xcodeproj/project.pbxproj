@@ -7,17 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9208547F29AC4F0200777BA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208547E29AC4F0200777BA5 /* MainView.swift */; };
+		9208548129AC51A200777BA5 /* CommonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208548029AC51A200777BA5 /* CommonProperties.swift */; };
+		9208548329AC550F00777BA5 /* AgainstPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208548229AC550F00777BA5 /* AgainstPlayerView.swift */; };
 		9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92243239299DC14200279EAA /* RockPaperScissorsApp.swift */; };
-		9224323C299DC14200279EAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224323B299DC14200279EAA /* ContentView.swift */; };
+		9224323C299DC14200279EAA /* AgainstCPUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224323B299DC14200279EAA /* AgainstCPUView.swift */; };
 		9224323E299DC14200279EAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9224323D299DC14200279EAA /* Assets.xcassets */; };
 		92243241299DC14200279EAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92243240299DC14200279EAA /* Preview Assets.xcassets */; };
 		9290157729A6F2A300843CF0 /* WrappingStack in Frameworks */ = {isa = PBXBuildFile; productRef = 9290157629A6F2A300843CF0 /* WrappingStack */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9208547E29AC4F0200777BA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9208548029AC51A200777BA5 /* CommonProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProperties.swift; sourceTree = "<group>"; };
+		9208548229AC550F00777BA5 /* AgainstPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainstPlayerView.swift; sourceTree = "<group>"; };
 		92243236299DC14100279EAA /* RockPaperScissors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RockPaperScissors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92243239299DC14200279EAA /* RockPaperScissorsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissorsApp.swift; sourceTree = "<group>"; };
-		9224323B299DC14200279EAA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9224323B299DC14200279EAA /* AgainstCPUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainstCPUView.swift; sourceTree = "<group>"; };
 		9224323D299DC14200279EAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92243240299DC14200279EAA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,8 +59,11 @@
 		92243238299DC14200279EAA /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
+				9208547E29AC4F0200777BA5 /* MainView.swift */,
 				92243239299DC14200279EAA /* RockPaperScissorsApp.swift */,
-				9224323B299DC14200279EAA /* ContentView.swift */,
+				9224323B299DC14200279EAA /* AgainstCPUView.swift */,
+				9208548229AC550F00777BA5 /* AgainstPlayerView.swift */,
+				9208548029AC51A200777BA5 /* CommonProperties.swift */,
 				9224323D299DC14200279EAA /* Assets.xcassets */,
 				9224323F299DC14200279EAA /* Preview Content */,
 			);
@@ -145,8 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9224323C299DC14200279EAA /* ContentView.swift in Sources */,
+				9224323C299DC14200279EAA /* AgainstCPUView.swift in Sources */,
+				9208547F29AC4F0200777BA5 /* MainView.swift in Sources */,
 				9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */,
+				9208548329AC550F00777BA5 /* AgainstPlayerView.swift in Sources */,
+				9208548129AC51A200777BA5 /* CommonProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

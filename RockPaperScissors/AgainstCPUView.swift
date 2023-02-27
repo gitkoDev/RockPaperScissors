@@ -8,7 +8,7 @@
 import SwiftUI
 import WrappingStack
 
-struct ContentView: View {
+struct AgainstCPUView: View {
 	@State private var userScore = 0
 	
 	@State private var userChoseSomething = false
@@ -22,8 +22,6 @@ struct ContentView: View {
 	let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 	@State private var timerIsRunning = false
 	
-//	let imagesNames = ["rock", "paper", "scissors", "lizard", "spock"]
-	
 	let timerDelay: Double = 1
 	
 	enum ChoiceOption: String, CaseIterable {
@@ -32,62 +30,46 @@ struct ContentView: View {
 		case scissors = "scissors"
 		case lizard = "lizard"
 		case spock = "spock"
-//		case empty = ""
 	}
 
 	
     var body: some View {
 			ZStack {
-				LinearGradient(colors: [Color(red: 0.7, green: 0.04, blue: 0.3), Color(red: 1, green: 0.98, blue: 0.84)], startPoint: .top, endPoint: .bottom)
+				BackgroundColor()
 				
 					VStack(spacing: 40) {
-											
-						Group {
-							Spacer()
-							Spacer()
-						}
 
-//						Button {
-//							startCountdown()
-//						} label: {
-//							Text(timeRemaining > 0 ? String(timeRemaining) : "GO!")
-//								.onChange(of: timeRemaining) { _ in
-////										Apply changes to the text view during every second of the countdown
-//
-//								}
-//								.onReceive(timer) { _ in
-//
-//									if timerIsRunning && timeRemaining >= 0 {
-//										timeRemaining -= 1
-//									} else {
-//										timerIsRunning = false
-//									}
-//								}
-//								.countdownModifier()
-//						}
-						
-						
-						if timeRemaining > 0 && userChoseSomething {
-							Text("too early")
-								.opacity(1)
-								.animation(.easeInOut(duration: 1))
-								.outcomeTitleStyle()
-						} else if timeRemaining == 0 && userChoseSomething {
-							Text("Choice made")
-								.outcomeTitleStyle()
-						} else {
-							Text("stopped")
-								.outcomeTitleStyle()
-						}
-						
-						HStack () {
-							Image(systemName: "globe")
 							Spacer()
-							Image(systemName: "globe")
+						Spacer()
+						Spacer()
+						
+						if userChoseSomething && userWon {
+							Text("You win")
+						} else if userChoseSomething && !userWon {
+							Text("You lose!")
+						} else if userChoseSomething && isFinishedInADraw {
+							Text("It's a draw")
+						} else {
+							Text("No text")
+								.opacity(0)
 						}
-						.frame(minWidth: 100, idealWidth: 200, maxWidth: 300, minHeight: 50, idealHeight: 100, maxHeight: 100, alignment: .center)
+						
+						HStack() {
+							Image(usersChoice)
+								.resizable()
+								.frame(width: 60, height: 60)
+							Spacer()
+							Image(computersChoice)
+								.resizable()
+								.frame(width: 60, height: 60)
+							
+						}
+						.padding(50)
+						.frame(width: 250, height: 250, alignment: .center)
 						.background(.ultraThinMaterial)
 						.clipShape(RoundedRectangle(cornerRadius: 10))
+						
+						Spacer().frame(height: 30)
 						
 						
 	//					Create a frame to store the picture of the computer's choice
@@ -96,8 +78,6 @@ struct ContentView: View {
 							ForEach(ChoiceOption.allCases, id: \.self) { obj in
 								Button {
 									chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
-									print(obj, "here")
-									iterateFunc()
 								} label: {
 									Image(obj.rawValue)
 										.resizable()
@@ -110,7 +90,6 @@ struct ContentView: View {
 							
 						}
 	
-						
 						Text("score: \(userScore)")
 							.font(.title2.weight(.medium))
 							.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
@@ -121,69 +100,66 @@ struct ContentView: View {
 				
 			}
 			.ignoresSafeArea()
-
     }
-	
-//	func chooseAnObject(userObj: String, computerObj: String) {
-//		print("user chose \(userObj)")
-//		computersChoice = computerObj
-//
-//		if userObj == computerObj {
-//			finishedInADraw()
-//		} else if userObj == "rock" {
-//			if computerObj == "paper" {
-//				computerWins()
-//			} else {
-//				userWins()
-//			}
-//		} else if userObj == "paper" {
-//			if computerObj == "rock" {
-//				userWins()
-//			} else {
-//				computerWins()
-//			}
-//		} else if userObj == "scissors" {
-//			if computerObj == "rock" {
-//				computerWins()
-//			} else {
-//				userWins()
-//			}
-//		}
-//
-//		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
-//			computersChoice = ""
-//		}
-//
-//	}
 	
 	func chooseAnObject(userObj: ChoiceOption, computerObj: ChoiceOption) {
 		print("user chose \(userObj)")
+		usersChoice = userObj.rawValue
 		computersChoice = computerObj.rawValue
 		
-		if userObj.rawValue == computerObj.rawValue {
+		switch (userObj, computerObj) {
+		case (ChoiceOption.scissors, ChoiceOption.paper):
+			userWins()
+		case (ChoiceOption.scissors, ChoiceOption.rock):
+			computerWins()
+		case (ChoiceOption.scissors, ChoiceOption.lizard):
+			userWins()
+		case (ChoiceOption.scissors, ChoiceOption.spock):
+			computerWins()
+			
+		case (ChoiceOption.paper, ChoiceOption.rock):
+			userWins()
+		case (ChoiceOption.paper, ChoiceOption.lizard):
+			computerWins()
+		case (ChoiceOption.paper, ChoiceOption.spock):
+			userWins()
+		case (ChoiceOption.paper, ChoiceOption.scissors):
+			computerWins()
+			
+		case (ChoiceOption.rock, ChoiceOption.paper):
+			computerWins()
+		case (ChoiceOption.rock, ChoiceOption.lizard):
+			userWins()
+		case (ChoiceOption.rock, ChoiceOption.spock):
+			computerWins()
+		case (ChoiceOption.rock, ChoiceOption.scissors):
+			userWins()
+			
+		case (ChoiceOption.lizard, ChoiceOption.paper):
+			userWins()
+		case (ChoiceOption.lizard, ChoiceOption.rock):
+			computerWins()
+		case (ChoiceOption.lizard, ChoiceOption.spock):
+			userWins()
+		case (ChoiceOption.lizard, ChoiceOption.scissors):
+			computerWins()
+			
+		case (ChoiceOption.spock, ChoiceOption.rock):
+			userWins()
+		case (ChoiceOption.spock, ChoiceOption.lizard):
+			computerWins()
+		case (ChoiceOption.spock, ChoiceOption.scissors):
+			userWins()
+		case (ChoiceOption.spock, ChoiceOption.paper):
+			computerWins()
+			
+		default:
 			finishedInADraw()
-		} else if userObj.rawValue == ChoiceOption.rock.rawValue {
-			if computerObj.rawValue == ChoiceOption.paper.rawValue {
-				computerWins()
-			} else {
-				userWins()
-			}
-		} else if userObj.rawValue == ChoiceOption.paper.rawValue {
-			if computerObj.rawValue == ChoiceOption.rock.rawValue {
-				userWins()
-			} else {
-				computerWins()
-			}
-		} else if userObj.rawValue == ChoiceOption.scissors.rawValue {
-			if computerObj.rawValue == ChoiceOption.rock.rawValue {
-				computerWins()
-			} else {
-				userWins()
-			}
 		}
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
 			computersChoice = ""
+			usersChoice = ""
 		}
 		
 	}
@@ -198,6 +174,7 @@ struct ContentView: View {
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
 			userChoseSomething = false
+//			userWon = false
 		}
 	}
 	
@@ -218,7 +195,7 @@ struct ContentView: View {
 		userChoseSomething = true
 		isFinishedInADraw = true
 		
-		print(userScore)
+		print("they are the same")
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
 			isFinishedInADraw = false
@@ -232,14 +209,8 @@ struct ContentView: View {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 			timerIsRunning = true
 		}
-
 	}
 	
-	func iterateFunc() {
-		for option in ChoiceOption.allCases {
-			print("here", option)
-		}
-		}
 	}
 	
 struct OutcomeTitle: ViewModifier {
@@ -253,7 +224,6 @@ struct OutcomeTitle: ViewModifier {
 }
 
 struct Countdown: ViewModifier {
-	
 	func body(content: Content) -> some View {
 		content
 			.frame(width: 110, height: 110)
@@ -276,7 +246,7 @@ extension View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        AgainstCPUView()
     }
 }
 
