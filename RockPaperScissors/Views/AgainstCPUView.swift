@@ -9,6 +9,8 @@ import SwiftUI
 import WrappingStack
 
 struct AgainstCPUView: View {
+	@State var isToggleOn = false
+	
 	@State private var userScore = 0
 	
 	@State private var userChoseSomething = false
@@ -34,45 +36,36 @@ struct AgainstCPUView: View {
 
 	
     var body: some View {
-			ZStack {
-				BackgroundColor()
-				
-					VStack(spacing: 40) {
+			ZStack() {
+				Color.background
 
-							Spacer()
-						Spacer()
-						Spacer()
+				ToggleButton(isToggleOn: $isToggleOn)
+				
+// MARK: Battle board
+					VStack(spacing: 40) {
 						
-						if userChoseSomething && userWon {
-							Text("You win")
-						} else if userChoseSomething && !userWon {
-							Text("You lose!")
-						} else if userChoseSomething && isFinishedInADraw {
-							Text("It's a draw")
-						} else {
-							Text("No text")
-								.opacity(0)
-						}
+						Spacer()
+						Spacer()
+
+						roundOutcomeText
 						
 						HStack() {
 							Image(usersChoice)
 								.resizable()
 								.frame(width: 60, height: 60)
-							Spacer()
+							Spacer().frame(width: 100)
 							Image(computersChoice)
 								.resizable()
 								.frame(width: 60, height: 60)
 							
 						}
-						.padding(50)
-						.frame(width: 250, height: 250, alignment: .center)
+						.frame(width: 350, height: 150)
 						.background(.ultraThinMaterial)
 						.clipShape(RoundedRectangle(cornerRadius: 10))
 						
 						Spacer().frame(height: 30)
 						
-						
-	//					Create a frame to store the picture of the computer's choice
+//	MARK: User choice buttons
 												
 						WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
 							ForEach(ChoiceOption.allCases, id: \.self) { obj in
@@ -87,20 +80,37 @@ struct AgainstCPUView: View {
 								.background(.linearGradient(colors: [.blue, .mint], startPoint: .bottom, endPoint: .top))
 								.clipShape(Circle())
 							}
-							
 						}
-	
+// MARK: User score
 						Text("score: \(userScore)")
 							.font(.title2.weight(.medium))
 							.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
 						
+						Spacer()
 						Spacer()
 						
 					}
 				
 			}
 			.ignoresSafeArea()
+			
+
     }
+	
+	
+	
+	@ViewBuilder var roundOutcomeText: some View {
+		if userChoseSomething && userWon {
+							Text("You win")
+						} else if userChoseSomething && !userWon {
+							Text("You lose!")
+						} else if isFinishedInADraw {
+							Text("It's a draw")
+						} else {
+							Text("No text")
+								.opacity(0)
+						}
+	}
 	
 	func chooseAnObject(userObj: ChoiceOption, computerObj: ChoiceOption) {
 		print("user chose \(userObj)")
@@ -201,7 +211,9 @@ struct AgainstCPUView: View {
 			isFinishedInADraw = false
 			userChoseSomething = false
 		}
+		
 	}
+	
 	
 	func startCountdown() -> Void {
 		timeRemaining = 3
@@ -210,9 +222,10 @@ struct AgainstCPUView: View {
 			timerIsRunning = true
 		}
 	}
-	
 	}
 	
+
+
 struct OutcomeTitle: ViewModifier {
 	func body(content: Content) -> some View {
 		content
@@ -246,7 +259,7 @@ extension View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        AgainstCPUView()
+			AgainstCPUView()
     }
 }
 

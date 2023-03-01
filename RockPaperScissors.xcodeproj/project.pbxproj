@@ -8,24 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		9208547F29AC4F0200777BA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208547E29AC4F0200777BA5 /* MainView.swift */; };
-		9208548129AC51A200777BA5 /* CommonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208548029AC51A200777BA5 /* CommonProperties.swift */; };
 		9208548329AC550F00777BA5 /* AgainstPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208548229AC550F00777BA5 /* AgainstPlayerView.swift */; };
 		9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92243239299DC14200279EAA /* RockPaperScissorsApp.swift */; };
 		9224323C299DC14200279EAA /* AgainstCPUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224323B299DC14200279EAA /* AgainstCPUView.swift */; };
 		9224323E299DC14200279EAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9224323D299DC14200279EAA /* Assets.xcassets */; };
 		92243241299DC14200279EAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92243240299DC14200279EAA /* Preview Assets.xcassets */; };
+		92336AC829AED8F900CFA4E2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92336AC729AED8F900CFA4E2 /* Extensions.swift */; };
+		924223EF29ADCFFB0054A44A /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924223EE29ADCFFB0054A44A /* ToggleButton.swift */; };
 		9290157729A6F2A300843CF0 /* WrappingStack in Frameworks */ = {isa = PBXBuildFile; productRef = 9290157629A6F2A300843CF0 /* WrappingStack */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9208547E29AC4F0200777BA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		9208548029AC51A200777BA5 /* CommonProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProperties.swift; sourceTree = "<group>"; };
 		9208548229AC550F00777BA5 /* AgainstPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainstPlayerView.swift; sourceTree = "<group>"; };
 		92243236299DC14100279EAA /* RockPaperScissors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RockPaperScissors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92243239299DC14200279EAA /* RockPaperScissorsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissorsApp.swift; sourceTree = "<group>"; };
 		9224323B299DC14200279EAA /* AgainstCPUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainstCPUView.swift; sourceTree = "<group>"; };
 		9224323D299DC14200279EAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92243240299DC14200279EAA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		92336AC729AED8F900CFA4E2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		924223EE29ADCFFB0054A44A /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,11 +61,9 @@
 		92243238299DC14200279EAA /* RockPaperScissors */ = {
 			isa = PBXGroup;
 			children = (
-				9208547E29AC4F0200777BA5 /* MainView.swift */,
 				92243239299DC14200279EAA /* RockPaperScissorsApp.swift */,
-				9224323B299DC14200279EAA /* AgainstCPUView.swift */,
-				9208548229AC550F00777BA5 /* AgainstPlayerView.swift */,
-				9208548029AC51A200777BA5 /* CommonProperties.swift */,
+				924223EE29ADCFFB0054A44A /* ToggleButton.swift */,
+				92336AC529AED8AF00CFA4E2 /* Views */,
 				9224323D299DC14200279EAA /* Assets.xcassets */,
 				9224323F299DC14200279EAA /* Preview Content */,
 			);
@@ -76,6 +76,25 @@
 				92243240299DC14200279EAA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		92336AC529AED8AF00CFA4E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9208547E29AC4F0200777BA5 /* MainView.swift */,
+				9224323B299DC14200279EAA /* AgainstCPUView.swift */,
+				9208548229AC550F00777BA5 /* AgainstPlayerView.swift */,
+				92336AC629AED8E500CFA4E2 /* Utilities */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		92336AC629AED8E500CFA4E2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				92336AC729AED8F900CFA4E2 /* Extensions.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,10 +174,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9224323C299DC14200279EAA /* AgainstCPUView.swift in Sources */,
+				924223EF29ADCFFB0054A44A /* ToggleButton.swift in Sources */,
 				9208547F29AC4F0200777BA5 /* MainView.swift in Sources */,
 				9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */,
 				9208548329AC550F00777BA5 /* AgainstPlayerView.swift in Sources */,
-				9208548129AC51A200777BA5 /* CommonProperties.swift in Sources */,
+				92336AC829AED8F900CFA4E2 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +315,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,7 +345,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
