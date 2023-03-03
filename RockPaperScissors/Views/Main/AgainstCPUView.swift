@@ -13,12 +13,17 @@ struct AgainstCPUView: View {
 	
 	@State private var userScore = 0
 	
-	@State private var userChoseSomething = false
-	@State private var userWon = false
-	@State private var isFinishedInADraw = false
+	@State private var outcome: RoundOutcomes = .NotStarted
+
+//	@State private var userChoseSomething = false
+//	@State private var userWon = false
+//	@State private var isFinishedInADraw = false
 	
 	@State private var usersChoice = ""
 	@State private var computersChoice = ""
+	
+	@State var userObj = ChoiceOption.Rock
+	@State var computerObj = ChoiceOption.Spock
 	
 	@State private var timeRemaining = 3
 	let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -26,28 +31,20 @@ struct AgainstCPUView: View {
 	
 	let timerDelay: Double = 1
 	
-	enum ChoiceOption: String, CaseIterable {
-		case rock = "rock"
-		case paper = "paper"
-		case scissors = "scissors"
-		case lizard = "lizard"
-		case spock = "spock"
-	}
-
-	
     var body: some View {
 			ZStack() {
-				Color.background
+				
+// MARK: Toggle button
 
 				ToggleButton(isToggleOn: $isToggleOn)
 				
-// MARK: Battle board
+// MARK: Battleboard
 					VStack(spacing: 40) {
 						
 						Spacer()
 						Spacer()
 
-						roundOutcomeText
+//						roundOutcomeText
 						
 						HStack() {
 							Image(usersChoice)
@@ -60,7 +57,11 @@ struct AgainstCPUView: View {
 							
 						}
 						.frame(width: 350, height: 150)
-						.background(.ultraThinMaterial)
+						.background(.ultraThinMaterial.opacity(0.6))
+						.battleboardModifier(outcome: outcome)
+						
+						
+						
 						.clipShape(RoundedRectangle(cornerRadius: 10))
 						
 						Spacer().frame(height: 30)
@@ -77,10 +78,13 @@ struct AgainstCPUView: View {
 								}
 								.frame(width: 50, height: 50)
 								.padding()
-								.background(.linearGradient(colors: [.blue, .mint], startPoint: .bottom, endPoint: .top))
+
+								.background(.blue)
+
 								.clipShape(Circle())
 							}
 						}
+						
 // MARK: User score
 						Text("score: \(userScore)")
 							.font(.title2.weight(.medium))
@@ -92,124 +96,98 @@ struct AgainstCPUView: View {
 					}
 				
 			}
+			.background(Color.background)
 			.ignoresSafeArea()
 			
 
     }
 	
 	
+//	MARK: Properties and methods
 	
-	@ViewBuilder var roundOutcomeText: some View {
-		if userChoseSomething && userWon {
-							Text("You win")
-						} else if userChoseSomething && !userWon {
-							Text("You lose!")
-						} else if isFinishedInADraw {
-							Text("It's a draw")
-						} else {
-							Text("No text")
-								.opacity(0)
-						}
-	}
+//	@ViewBuilder var roundOutcomeText: some View {
+//		if userChoseSomething && userWon {
+//							Text("You win")
+//						} else if userChoseSomething && !userWon {
+//							Text("You lose!")
+//						} else if isFinishedInADraw {
+//							Text("It's a draw")
+//						} else {
+//							Text("No text")
+//								.opacity(0)
+//						}
+//	}
+	
+	
 	
 	func chooseAnObject(userObj: ChoiceOption, computerObj: ChoiceOption) {
 		print("user chose \(userObj)")
 		usersChoice = userObj.rawValue
 		computersChoice = computerObj.rawValue
 		
-		switch (userObj, computerObj) {
-		case (ChoiceOption.scissors, ChoiceOption.paper):
-			userWins()
-		case (ChoiceOption.scissors, ChoiceOption.rock):
-			computerWins()
-		case (ChoiceOption.scissors, ChoiceOption.lizard):
-			userWins()
-		case (ChoiceOption.scissors, ChoiceOption.spock):
-			computerWins()
-			
-		case (ChoiceOption.paper, ChoiceOption.rock):
-			userWins()
-		case (ChoiceOption.paper, ChoiceOption.lizard):
-			computerWins()
-		case (ChoiceOption.paper, ChoiceOption.spock):
-			userWins()
-		case (ChoiceOption.paper, ChoiceOption.scissors):
-			computerWins()
-			
-		case (ChoiceOption.rock, ChoiceOption.paper):
-			computerWins()
-		case (ChoiceOption.rock, ChoiceOption.lizard):
-			userWins()
-		case (ChoiceOption.rock, ChoiceOption.spock):
-			computerWins()
-		case (ChoiceOption.rock, ChoiceOption.scissors):
-			userWins()
-			
-		case (ChoiceOption.lizard, ChoiceOption.paper):
-			userWins()
-		case (ChoiceOption.lizard, ChoiceOption.rock):
-			computerWins()
-		case (ChoiceOption.lizard, ChoiceOption.spock):
-			userWins()
-		case (ChoiceOption.lizard, ChoiceOption.scissors):
-			computerWins()
-			
-		case (ChoiceOption.spock, ChoiceOption.rock):
-			userWins()
-		case (ChoiceOption.spock, ChoiceOption.lizard):
-			computerWins()
-		case (ChoiceOption.spock, ChoiceOption.scissors):
-			userWins()
-		case (ChoiceOption.spock, ChoiceOption.paper):
-			computerWins()
-			
-		default:
+		if userObj == computerObj {
 			finishedInADraw()
+		} else if userObj == .Rock {
+			if computerObj == .Lizard || computerObj == .Scissors {
+				userWins()
+			} else {
+				computerWins()
+			}
+		} else if userObj == .Paper {
+			if computerObj == .Paper || computerObj == .Spock {
+				userWins()
+			} else {
+				computerWins()
+			}
+		} else if userObj == .Scissors {
+			if computerObj == .Paper || computerObj == .Lizard {
+				userWins()
+			} else {
+				computerWins()
+			}
+		} else if userObj == .Lizard {
+			if computerObj == .Spock || computerObj == .Paper {
+				userWins()
+			} else {
+				computerWins()
+			}
+		} else if userObj == .Spock {
+			if computerObj == .Scissors || computerObj == .Rock {
+				userWins()
+			} else {
+				computerWins()
+			}
 		}
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
 			computersChoice = ""
 			usersChoice = ""
 		}
-		
 	}
 	
 	func userWins() {
-		userChoseSomething = true
-		userWon = true
-		
-		print("you win")
-		
+		outcome = .LeftSideWins
 		userScore += 1
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
-			userChoseSomething = false
-//			userWon = false
+			outcome = .NotStarted
 		}
 	}
 	
 	func computerWins() {
-		userChoseSomething = true
-		userWon = false
-		
-		print("you lose")
-		
+		outcome = .RightSideWins
 		userScore -= 1
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
-			userChoseSomething = false
+			outcome = .NotStarted
 		}
 	}
 	
 	func finishedInADraw() {
-		userChoseSomething = true
-		isFinishedInADraw = true
-		
-		print("they are the same")
-		
+		outcome = .Draw
+
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
-			isFinishedInADraw = false
-			userChoseSomething = false
+			outcome = .NotStarted
 		}
 		
 	}
@@ -226,13 +204,34 @@ struct AgainstCPUView: View {
 	
 
 
-struct OutcomeTitle: ViewModifier {
+//struct OutcomeTitle: ViewModifier {
+//	func body(content: Content) -> some View {
+//		content
+//		.font(.largeTitle.weight(.black))
+//		.frame(minHeight: 20)
+//		.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
+//		.transition(.opacity)
+//	}
+//}
+
+struct BattleboardModifier: ViewModifier {
+	var outcome: RoundOutcomes
+	
 	func body(content: Content) -> some View {
-		content
-		.font(.largeTitle.weight(.black))
-		.frame(minHeight: 20)
-		.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
-		.transition(.opacity)
+		switch outcome {
+		case .Draw:
+				content
+				.background(.white)
+		case .LeftSideWins:
+			content
+				.background(.green)
+		case .RightSideWins:
+			content
+				.background(.red)
+		default:
+			content
+				.background(.blue)
+		}
 	}
 }
 
@@ -245,15 +244,6 @@ struct Countdown: ViewModifier {
 			.font(.system(size: 50, weight: .bold))
 			.opacity(0.7)
 			.foregroundColor(.purple)
-	}
-}
-
-extension View {
-	func outcomeTitleStyle() -> some View {
-		modifier(OutcomeTitle())
-	}
-	func countdownModifier() -> some View {
-		modifier(Countdown())
 	}
 }
 

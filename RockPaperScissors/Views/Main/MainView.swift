@@ -11,6 +11,7 @@ struct MainView: View {
 	@State private var showCPUModal = false
 	@State private var showPlayerModal = false
 	
+	
 	var body: some View {
 		ZStack {
 			Color.background
@@ -35,7 +36,7 @@ struct MainView: View {
 
 }
 
-struct Buttons: ViewModifier {
+struct MenuButtons: ViewModifier {
 	func body(content: Content) -> some View {
 		content
 		.foregroundColor(.primary)
@@ -45,11 +46,6 @@ struct Buttons: ViewModifier {
 	}
 }
 
-extension View {
-	func buttonsModifier() -> some View {
-		modifier(Buttons())
-	}
-}
 
 
 struct MainView_Previews: PreviewProvider {
