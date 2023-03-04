@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum RoundOutcomes {
-	case NotStarted, LeftSideWins, RightSideWins, Draw
+	case NotStarted
+	case LeftSideWins
+	case RightSideWins
+	case Draw
 }
 

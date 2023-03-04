@@ -9,15 +9,14 @@ import SwiftUI
 import WrappingStack
 
 struct AgainstCPUView: View {
+	@State var battleboardBG: Color = .white.opacity(0)
+	
 	@State var isToggleOn = false
+	@State var areChoiceButtonsDisabled = false
 	
 	@State private var userScore = 0
 	
-	@State private var outcome: RoundOutcomes = .NotStarted
-
-//	@State private var userChoseSomething = false
-//	@State private var userWon = false
-//	@State private var isFinishedInADraw = false
+	@State private var outcome: RoundOutcomes = .Draw
 	
 	@State private var usersChoice = ""
 	@State private var computersChoice = ""
@@ -58,8 +57,9 @@ struct AgainstCPUView: View {
 						}
 						.frame(width: 350, height: 150)
 						.background(.ultraThinMaterial.opacity(0.6))
-						.battleboardModifier(outcome: outcome)
+						.background(battleboardBG)
 						
+//						.battleboardModifier(outcome: outcome)
 						
 						
 						.clipShape(RoundedRectangle(cornerRadius: 10))
@@ -76,6 +76,7 @@ struct AgainstCPUView: View {
 									Image(obj.rawValue)
 										.resizable()
 								}
+								.disabled(areChoiceButtonsDisabled)
 								.frame(width: 50, height: 50)
 								.padding()
 
@@ -105,25 +106,15 @@ struct AgainstCPUView: View {
 	
 //	MARK: Properties and methods
 	
-//	@ViewBuilder var roundOutcomeText: some View {
-//		if userChoseSomething && userWon {
-//							Text("You win")
-//						} else if userChoseSomething && !userWon {
-//							Text("You lose!")
-//						} else if isFinishedInADraw {
-//							Text("It's a draw")
-//						} else {
-//							Text("No text")
-//								.opacity(0)
-//						}
-//	}
-	
-	
-	
 	func chooseAnObject(userObj: ChoiceOption, computerObj: ChoiceOption) {
 		print("user chose \(userObj)")
 		usersChoice = userObj.rawValue
 		computersChoice = computerObj.rawValue
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
+			areChoiceButtonsDisabled = false
+		}
+		areChoiceButtonsDisabled = true
 		
 		if userObj == computerObj {
 			finishedInADraw()
@@ -159,6 +150,7 @@ struct AgainstCPUView: View {
 			}
 		}
 		
+		
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
 			computersChoice = ""
 			usersChoice = ""
@@ -168,28 +160,21 @@ struct AgainstCPUView: View {
 	func userWins() {
 		outcome = .LeftSideWins
 		userScore += 1
-		
-		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
-			outcome = .NotStarted
-		}
+		animateRound()
+
 	}
 	
 	func computerWins() {
 		outcome = .RightSideWins
 		userScore -= 1
-		
-		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
-			outcome = .NotStarted
-		}
+		animateRound()
+
 	}
 	
 	func finishedInADraw() {
 		outcome = .Draw
+		animateRound()
 
-		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
-			outcome = .NotStarted
-		}
-		
 	}
 	
 	
@@ -200,37 +185,59 @@ struct AgainstCPUView: View {
 			timerIsRunning = true
 		}
 	}
+
+	func battleboardAnimation(outcome: RoundOutcomes) {
+		withAnimation(.easeIn(duration: 0.4)) {
+			switch outcome {
+			case .LeftSideWins:
+				battleboardBG = .victoryBackround
+			case .RightSideWins:
+				battleboardBG = .defeatBackground
+			case .Draw:
+				battleboardBG = .drawBackground
+			default:
+				battleboardBG = .white.opacity(0)
+			}
+		}
 	}
 	
-
-
-//struct OutcomeTitle: ViewModifier {
-//	func body(content: Content) -> some View {
-//		content
-//		.font(.largeTitle.weight(.black))
-//		.frame(minHeight: 20)
-//		.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
-//		.transition(.opacity)
-//	}
-//}
+	func animateRound() {
+		battleboardAnimation(outcome: outcome)
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
+			outcome = .NotStarted
+			battleboardAnimation(outcome: outcome)
+		}
+	}
+	
+	}
 
 struct BattleboardModifier: ViewModifier {
 	var outcome: RoundOutcomes
 	
 	func body(content: Content) -> some View {
+
 		switch outcome {
 		case .Draw:
+			withAnimation(.easeIn(duration: 2)) {
 				content
-				.background(.white)
+					.background(.white)
+			}
 		case .LeftSideWins:
-			content
+			withAnimation(.easeIn(duration: 2)) {
+				content
 				.background(.green)
+			}
 		case .RightSideWins:
-			content
+			withAnimation(.easeIn(duration: 2)) {
+				content
 				.background(.red)
+			}
 		default:
-			content
+			withAnimation(.easeIn(duration: 2)) {
+				content
 				.background(.blue)
+			}
 		}
 	}
 }
