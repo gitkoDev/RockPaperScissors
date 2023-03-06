@@ -10,6 +10,10 @@ import WrappingStack
 
 struct AgainstCPUView: View {
 	@State var battleboardBG: Color = .white.opacity(0)
+	@State var leftObjectOffset: CGFloat = -120
+	@State var rightObjectOffset: CGFloat = 120
+	@State var isLeftSideWinner = false
+	@State var isRightSideWinner = false
 	
 	@State var isToggleOn = false
 	@State var areChoiceButtonsDisabled = false
@@ -28,7 +32,7 @@ struct AgainstCPUView: View {
 	let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 	@State private var timerIsRunning = false
 	
-	let timerDelay: Double = 1
+	let timerDelay: Double = 2
 	
     var body: some View {
 			ZStack() {
@@ -38,69 +42,61 @@ struct AgainstCPUView: View {
 				ToggleButton(isToggleOn: $isToggleOn)
 				
 // MARK: Battleboard
-					VStack(spacing: 40) {
-						
-						Spacer()
-						Spacer()
-
-//						roundOutcomeText
-						
-						HStack() {
-							Image(usersChoice)
-								.resizable()
-								.frame(width: 60, height: 60)
-							Spacer().frame(width: 100)
-							Image(computersChoice)
-								.resizable()
-								.frame(width: 60, height: 60)
-							
-						}
-						.frame(width: 350, height: 150)
-						.background(.ultraThinMaterial.opacity(0.6))
-						.background(battleboardBG)
-						
-//						.battleboardModifier(outcome: outcome)
-						
-						
-						.clipShape(RoundedRectangle(cornerRadius: 10))
-						
-						Spacer().frame(height: 30)
-						
-//	MARK: User choice buttons
-												
-						WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
-							ForEach(ChoiceOption.allCases, id: \.self) { obj in
-								Button {
-									chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
-								} label: {
-									Image(obj.rawValue)
-										.resizable()
-								}
-								.disabled(areChoiceButtonsDisabled)
-								.frame(width: 50, height: 50)
-								.padding()
-
-								.background(.blue)
-
-								.clipShape(Circle())
-							}
-						}
-						
-// MARK: User score
-						Text("score: \(userScore)")
-							.font(.title2.weight(.medium))
-							.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
-						
-						Spacer()
-						Spacer()
-						
+				VStack(spacing: 40) {
+					
+					Spacer()
+					Spacer()
+					
+					HStack() {
+						Image(usersChoice)
+							.resizable()
+							.frame(width: 60, height: 60)
+							.offset(x: leftObjectOffset)
+							.scaleEffect(isLeftSideWinner ? 2 : 1)
+						Spacer().frame(width: 100)
+						Image(computersChoice)
+							.resizable()
+							.frame(width: 60, height: 60)
+							.offset(x: rightObjectOffset)
+							.scaleEffect(isRightSideWinner ? 2 : 1)
 					}
-				
+					.frame(width: 350, height: 150)
+					.background(.ultraThinMaterial.opacity(0.6))
+					.background(battleboardBG)
+					.clipShape(RoundedRectangle(cornerRadius: 10))
+					
+					Spacer().frame(height: 30)
+					
+					//	MARK: User choice buttons
+					
+					WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
+						ForEach(ChoiceOption.allCases, id: \.self) { obj in
+							Button {
+								chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
+							} label: {
+								Image(obj.rawValue)
+									.resizable()
+							}
+							.disabled(areChoiceButtonsDisabled)
+							.frame(width: 50, height: 50)
+							.padding()
+							
+							.background(.blue)
+							
+							.clipShape(Circle())
+						}
+					}
+					// MARK: User score
+					Text("score: \(userScore)")
+						.font(.title2.weight(.medium))
+						.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
+					
+					Spacer()
+					Spacer()
+				}
 			}
 			.background(Color.background)
 			.ignoresSafeArea()
-			
-
     }
 	
 	
@@ -160,34 +156,32 @@ struct AgainstCPUView: View {
 	func userWins() {
 		outcome = .LeftSideWins
 		userScore += 1
+		isLeftSideWinner = true
 		animateRound()
-
 	}
 	
 	func computerWins() {
 		outcome = .RightSideWins
 		userScore -= 1
+		isRightSideWinner = true
 		animateRound()
-
 	}
 	
 	func finishedInADraw() {
 		outcome = .Draw
 		animateRound()
-
 	}
 	
 	
 	func startCountdown() -> Void {
 		timeRemaining = 3
-		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 			timerIsRunning = true
 		}
 	}
 
 	func battleboardAnimation(outcome: RoundOutcomes) {
-		withAnimation(.easeIn(duration: 0.4)) {
+		withAnimation(.easeOut(duration: 1)) {
 			switch outcome {
 			case .LeftSideWins:
 				battleboardBG = .victoryBackround
@@ -198,49 +192,29 @@ struct AgainstCPUView: View {
 			default:
 				battleboardBG = .white.opacity(0)
 			}
+			
+			leftObjectOffset = 0
+			rightObjectOffset = 0
 		}
 	}
 	
 	func animateRound() {
 		battleboardAnimation(outcome: outcome)
-		
+
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
 			outcome = .NotStarted
+			
 			battleboardAnimation(outcome: outcome)
+			
+			leftObjectOffset = -130
+			rightObjectOffset = 130
+			
+			isLeftSideWinner = false
+			isRightSideWinner = false
 		}
 	}
 	
 	}
-
-struct BattleboardModifier: ViewModifier {
-	var outcome: RoundOutcomes
-	
-	func body(content: Content) -> some View {
-
-		switch outcome {
-		case .Draw:
-			withAnimation(.easeIn(duration: 2)) {
-				content
-					.background(.white)
-			}
-		case .LeftSideWins:
-			withAnimation(.easeIn(duration: 2)) {
-				content
-				.background(.green)
-			}
-		case .RightSideWins:
-			withAnimation(.easeIn(duration: 2)) {
-				content
-				.background(.red)
-			}
-		default:
-			withAnimation(.easeIn(duration: 2)) {
-				content
-				.background(.blue)
-			}
-		}
-	}
-}
 
 struct Countdown: ViewModifier {
 	func body(content: Content) -> some View {

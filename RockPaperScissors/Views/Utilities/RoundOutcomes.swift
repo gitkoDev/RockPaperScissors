@@ -14,4 +14,3 @@ enum RoundOutcomes {
 	case RightSideWins
 	case Draw
 }
-

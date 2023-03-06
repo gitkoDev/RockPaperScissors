@@ -18,9 +18,6 @@ extension View {
 	func buttonsModifier() -> some View {
 		modifier(MenuButtons())
 	}
-	func battleboardModifier(outcome: RoundOutcomes) -> some View {
-		modifier(BattleboardModifier(outcome: outcome))
-	}
 	func countdownModifier() -> some View {
 		modifier(Countdown())
 	}
