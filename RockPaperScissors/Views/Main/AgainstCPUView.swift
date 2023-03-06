@@ -36,13 +36,16 @@ struct AgainstCPUView: View {
 	
     var body: some View {
 			ZStack() {
+				Color.background
 				
 // MARK: Toggle button
 
 				ToggleButton(isToggleOn: $isToggleOn)
 				
+				
+				
 // MARK: Battleboard
-				VStack(spacing: 40) {
+				VStack(spacing: 30) {
 					
 					Spacer()
 					Spacer()
@@ -52,20 +55,22 @@ struct AgainstCPUView: View {
 							.resizable()
 							.frame(width: 60, height: 60)
 							.offset(x: leftObjectOffset)
-							.scaleEffect(isLeftSideWinner ? 2 : 1)
+							.scaleEffect(isLeftSideWinner ? 1.5 : 1)
 						Spacer().frame(width: 100)
 						Image(computersChoice)
 							.resizable()
 							.frame(width: 60, height: 60)
 							.offset(x: rightObjectOffset)
-							.scaleEffect(isRightSideWinner ? 2 : 1)
+							.scaleEffect(isRightSideWinner ? 1.5 : 1)
 					}
-					.frame(width: 350, height: 150)
-					.background(.ultraThinMaterial.opacity(0.6))
+					
+					.frame(width: 350, height: 200)
+					.background(.ultraThinMaterial.opacity(0.8))
 					.background(battleboardBG)
 					.clipShape(RoundedRectangle(cornerRadius: 10))
+					.shadow(radius: 2)
 					
-					Spacer().frame(height: 30)
+					Spacer().frame(height: 50)
 					
 					//	MARK: User choice buttons
 					
@@ -78,24 +83,26 @@ struct AgainstCPUView: View {
 									.resizable()
 							}
 							.disabled(areChoiceButtonsDisabled)
-							.frame(width: 50, height: 50)
+							.frame(width: 55, height: 55)
 							.padding()
 							
 							.background(.blue)
 							
 							.clipShape(Circle())
+							.shadow(radius: 3)
 						}
 					}
+					
+					
 					// MARK: User score
 					Text("score: \(userScore)")
 						.font(.title2.weight(.medium))
 						.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
 					
 					Spacer()
-					Spacer()
 				}
+				
 			}
-			.background(Color.background)
 			.ignoresSafeArea()
     }
 	

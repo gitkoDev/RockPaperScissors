@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
-	static let background = LinearGradient(colors: [Color("Background 1"), Color("Background 2")], startPoint: .topLeading, endPoint: .bottomTrailing)
+	static let background = RadialGradient(colors: [Color("Background1"), Color("Background2")], center: .leading, startRadius: 300, endRadius: 600)
 	static let victoryBackround = Color("Victory background")
 	static let defeatBackground = Color("Defeat background")
 	static let drawBackground = Color("Draw background")
