@@ -9,18 +9,7 @@ import SwiftUI
 import WrappingStack
 
 //struct UserChoiceButtons: View {
-//	@Binding var userObj: ChoiceOption
-//	@Binding var computerObj: ChoiceOption
-//
-//    var body: some View {
-//
-//    }
-//
-//
-//}
-//
-//struct UserChoiceButtons_Previews: PreviewProvider {
-//    static var previews: some View {
-//			UserChoiceButtons()
-//    }
+//	var body: some View {
+//		
+//	}
 //}

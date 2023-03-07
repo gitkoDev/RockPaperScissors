@@ -9,14 +9,14 @@ import SwiftUI
 import WrappingStack
 
 struct AgainstCPUView: View {
-	@State var battleboardBG: Color = .white.opacity(0)
-	@State var leftObjectOffset: CGFloat = -120
-	@State var rightObjectOffset: CGFloat = 120
-	@State var isLeftSideWinner = false
-	@State var isRightSideWinner = false
+	@State private var battleboardBG: Color = .white.opacity(0)
+	@State private var leftObjectOffset: CGFloat = -120
+	@State private var rightObjectOffset: CGFloat = 120
+	@State private var isLeftSideWinner = false
+	@State private var isRightSideWinner = false
 	
 	@State var isToggleOn = false
-	@State var areChoiceButtonsDisabled = false
+	@State private var areChoiceButtonsDisabled = false
 	
 	@State private var userScore = 0
 	
@@ -28,10 +28,6 @@ struct AgainstCPUView: View {
 	@State var userObj = ChoiceOption.Rock
 	@State var computerObj = ChoiceOption.Spock
 	
-	@State private var timeRemaining = 3
-	let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-	@State private var timerIsRunning = false
-	
 	let timerDelay: Double = 2
 	
     var body: some View {
@@ -39,16 +35,20 @@ struct AgainstCPUView: View {
 				Color.background
 				
 // MARK: Toggle button
+				
 
-				ToggleButton(isToggleOn: $isToggleOn)
-				
-				
-				
-// MARK: Battleboard
-				VStack(spacing: 30) {
+// MARK: Dismiss view button
+				VStack(spacing: 20) {
 					
-					Spacer()
-					Spacer()
+					Spacer().frame(height: 35)
+					HStack {
+						Spacer()
+						DismissButton()
+					}
+					.padding(30)
+		// MARK: Battleboard
+					
+					Spacer().frame(height: 15)
 					
 					HStack() {
 						Image(usersChoice)
@@ -70,7 +70,12 @@ struct AgainstCPUView: View {
 					.clipShape(RoundedRectangle(cornerRadius: 10))
 					.shadow(radius: 2)
 					
-					Spacer().frame(height: 50)
+					Spacer().frame(height: 20)
+					
+					// MARK: User score
+					Text("score: \(userScore)")
+						.font(.custom("JosefinSansRoman-Light", size: 60))
+						.foregroundColor(Color(red: 0.25, green: 0.25, blue: 0.25))
 					
 					//	MARK: User choice buttons
 					
@@ -85,19 +90,11 @@ struct AgainstCPUView: View {
 							.disabled(areChoiceButtonsDisabled)
 							.frame(width: 55, height: 55)
 							.padding()
-							
-							.background(.blue)
-							
+							.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
 							.clipShape(Circle())
 							.shadow(radius: 3)
 						}
 					}
-					
-					
-					// MARK: User score
-					Text("score: \(userScore)")
-						.font(.title2.weight(.medium))
-						.foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.1))
 					
 					Spacer()
 				}
@@ -105,6 +102,15 @@ struct AgainstCPUView: View {
 			}
 			.ignoresSafeArea()
     }
+	
+	init() {
+		for fontFamily in UIFont.familyNames {
+			print(fontFamily)
+			for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
+				print("-- \(fontName)")
+			}
+		}
+	}
 	
 	
 //	MARK: Properties and methods
@@ -179,14 +185,6 @@ struct AgainstCPUView: View {
 		animateRound()
 	}
 	
-	
-	func startCountdown() -> Void {
-		timeRemaining = 3
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-			timerIsRunning = true
-		}
-	}
-
 	func battleboardAnimation(outcome: RoundOutcomes) {
 		withAnimation(.easeOut(duration: 1)) {
 			switch outcome {
@@ -223,17 +221,6 @@ struct AgainstCPUView: View {
 	
 	}
 
-struct Countdown: ViewModifier {
-	func body(content: Content) -> some View {
-		content
-			.frame(width: 110, height: 110)
-			.background(.ultraThinMaterial)
-			.clipShape(Circle())
-			.font(.system(size: 50, weight: .bold))
-			.opacity(0.7)
-			.foregroundColor(.purple)
-	}
-}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -15,7 +15,7 @@ struct ToggleButton: View {
 				
 			}
 			.tint(.blue)
-			.position(x: 150, y: 100)
+//			.position(x: -100, y: 15)
     }
 }
 

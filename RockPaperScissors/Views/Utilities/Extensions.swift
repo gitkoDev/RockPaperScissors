@@ -18,8 +18,5 @@ extension View {
 	func buttonsModifier() -> some View {
 		modifier(MenuButtons())
 	}
-	func countdownModifier() -> some View {
-		modifier(Countdown())
-	}
 }
 
