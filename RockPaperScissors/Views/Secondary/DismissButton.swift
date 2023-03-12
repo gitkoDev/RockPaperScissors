@@ -15,12 +15,20 @@ struct DismissButton: View {
 				self.dismiss()
 			} label: {
 					Image(systemName: "xmark")
-						.font(.title)
-						.foregroundColor(.drawBackground)
+					.font(.title2.bold())
+					.foregroundColor(.gray)
 						.background(
-							Circle()
-								.fill(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
-								.frame(width: 40, height: 40)
+							ZStack {
+								Circle()
+									.fill(
+										LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
+									.frame(width: 40, height: 40)
+									.shadow(radius: 3)
+								Circle()
+									.fill(Color.drawBackground)
+									.frame(width: 33)
+							}
+
 						)
 			}
 //			.position(x: 350, y: 50)

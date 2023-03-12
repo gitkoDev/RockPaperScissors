@@ -42,6 +42,7 @@ struct AgainstCPUView: View {
 					
 					Spacer().frame(height: 35)
 					HStack {
+						ToggleButton(isToggleOn: $isToggleOn)
 						Spacer()
 						DismissButton()
 					}
@@ -74,7 +75,7 @@ struct AgainstCPUView: View {
 					
 					// MARK: User score
 					Text("score: \(userScore)")
-						.font(.custom("JosefinSansRoman-Light", size: 60))
+						.font(.custom("JosefinSansRoman-Light", size: 50))
 						.foregroundColor(Color(red: 0.25, green: 0.25, blue: 0.25))
 					
 					//	MARK: User choice buttons
@@ -88,7 +89,7 @@ struct AgainstCPUView: View {
 									.resizable()
 							}
 							.disabled(areChoiceButtonsDisabled)
-							.frame(width: 55, height: 55)
+							.frame(width: 50, height: 50)
 							.padding()
 							.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
 							.clipShape(Circle())
