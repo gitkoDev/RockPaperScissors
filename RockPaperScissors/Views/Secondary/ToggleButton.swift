@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct ToggleButton: View {
-	@Binding var isToggleOn: Bool
+	@AppStorage("isToggleOn") private var isToggleOn: Bool = false
 	
-    var body: some View {
+	var body: some View {
 			ZStack {
-
 				Capsule()
 					.fill(Color.toggleButtonBackground)
 					.frame(width: 100, height: 45)
 					.shadow(radius: 3)
 
 				HStack {
-					if !isToggleOn {
+					if isToggleOn {
 						Spacer()
-						Image("scissorsAlt")
+						Image("scissors")
 							.resizable()
 							.frame(width: 30, height: 30)
 					}
@@ -33,20 +32,19 @@ struct ToggleButton: View {
 							.foregroundColor(.white)
 					}
 					
-					if isToggleOn {
+					if !isToggleOn {
 						Spacer()
-						Image("scissors")
+						Image("scissorsAlt")
 							.resizable()
 							.frame(width: 30, height: 30)
 						Spacer()
 					}
 
 				}
+				.animation(.default, value: isToggleOn)
 				.frame(width: 100, height: 50)
 				.onTapGesture {
-					withAnimation(.spring()) {
 						isToggleOn.toggle()
-					}
 				}
 			}
     }
@@ -54,6 +52,6 @@ struct ToggleButton: View {
 
 struct ToggleButton_Previews: PreviewProvider {
     static var previews: some View {
-			ToggleButton(isToggleOn: .constant(false))
+			ToggleButton()
     }
 }

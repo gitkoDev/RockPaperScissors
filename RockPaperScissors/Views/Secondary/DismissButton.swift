@@ -31,7 +31,6 @@ struct DismissButton: View {
 
 						)
 			}
-//			.position(x: 350, y: 50)
     }
 }
 

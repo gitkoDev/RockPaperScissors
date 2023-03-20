@@ -12,24 +12,25 @@ struct MainView: View {
 	@State private var showPlayerModal = false
 	
 	var body: some View {
-		AgainstCPUView()
-//		ZStack {
-//			Color.background
-//			VStack(spacing: 60) {
-//				Button(action: {
-//					showCPUModal.toggle()
-//				}) {
-//					Text("VS CPU")
-//						.buttonsModifier()
-//				}
-//
-//			}
-//
-//
-//		}.ignoresSafeArea()
-//			.fullScreenCover(isPresented: $showCPUModal) {
-//				AgainstCPUView()
-//			}
+		ZStack {
+//			Color.red
+			BackgroundColor() 
+			VStack(spacing: 60) {
+				ToggleButton()
+				Button(action: {
+					showCPUModal.toggle()
+				}) {
+					Text("VS CPU")
+						.buttonsModifier()
+				}
+
+			}
+
+
+		}.ignoresSafeArea()
+			.fullScreenCover(isPresented: $showCPUModal) {
+				AgainstCPUView()
+			}
 
 	}
 
