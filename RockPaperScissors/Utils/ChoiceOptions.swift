@@ -14,3 +14,12 @@ enum ChoiceOption: String, CaseIterable {
 	case Lizard = "lizard"
 	case Spock = "spock"
 }
+
+
+enum AltChoiceOption: String, CaseIterable {
+	case Rock = "rockAlt"
+	case Paper = "paperAlt"
+	case Scissors = "scissorsAlt"
+	case Lizard = "lizardAlt"
+	case Spock = "spockAlt"
+}

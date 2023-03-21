@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9208547F29AC4F0200777BA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208547E29AC4F0200777BA5 /* MainView.swift */; };
 		9208548329AC550F00777BA5 /* AgainstPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208548229AC550F00777BA5 /* AgainstPlayerView.swift */; };
+		921E5E5629C7FE6E00CA3E78 /* ObjectsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E5E5529C7FE6E00CA3E78 /* ObjectsStack.swift */; };
+		921E5E5829C802C100CA3E78 /* Battleboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E5E5729C802C100CA3E78 /* Battleboard.swift */; };
 		9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92243239299DC14200279EAA /* RockPaperScissorsApp.swift */; };
 		9224323C299DC14200279EAA /* AgainstCPUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224323B299DC14200279EAA /* AgainstCPUView.swift */; };
 		9224323E299DC14200279EAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9224323D299DC14200279EAA /* Assets.xcassets */; };
@@ -23,11 +25,14 @@
 		9290157729A6F2A300843CF0 /* WrappingStack in Frameworks */ = {isa = PBXBuildFile; productRef = 9290157629A6F2A300843CF0 /* WrappingStack */; };
 		92A9D15629B1876300CDE9A5 /* RoundOutcomes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9D15529B1876300CDE9A5 /* RoundOutcomes.swift */; };
 		92E9DA5029B6C472000A420D /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9DA4F29B6C472000A420D /* DismissButton.swift */; };
+		92FA69BB29C9525F00C3F3BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FA69BA29C9525F00C3F3BB /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9208547E29AC4F0200777BA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9208548229AC550F00777BA5 /* AgainstPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainstPlayerView.swift; sourceTree = "<group>"; };
+		921E5E5529C7FE6E00CA3E78 /* ObjectsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsStack.swift; sourceTree = "<group>"; };
+		921E5E5729C802C100CA3E78 /* Battleboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battleboard.swift; sourceTree = "<group>"; };
 		92243236299DC14100279EAA /* RockPaperScissors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RockPaperScissors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92243239299DC14200279EAA /* RockPaperScissorsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissorsApp.swift; sourceTree = "<group>"; };
 		9224323B299DC14200279EAA /* AgainstCPUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainstCPUView.swift; sourceTree = "<group>"; };
@@ -43,6 +48,7 @@
 		9283A10629BEBCC800B6C393 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		92A9D15529B1876300CDE9A5 /* RoundOutcomes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundOutcomes.swift; sourceTree = "<group>"; };
 		92E9DA4F29B6C472000A420D /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
+		92FA69BA29C9525F00C3F3BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,7 @@
 			children = (
 				922644CB29B5B23B0016416A /* Info.plist */,
 				92243239299DC14200279EAA /* RockPaperScissorsApp.swift */,
+				92FA69BA29C9525F00C3F3BB /* AppDelegate.swift */,
 				92336AC529AED8AF00CFA4E2 /* Views */,
 				92336AC629AED8E500CFA4E2 /* Utils */,
 				9224323D299DC14200279EAA /* Assets.xcassets */,
@@ -140,6 +147,8 @@
 				924223EE29ADCFFB0054A44A /* ToggleButton.swift */,
 				92E9DA4F29B6C472000A420D /* DismissButton.swift */,
 				9283A10629BEBCC800B6C393 /* BackgroundColor.swift */,
+				921E5E5529C7FE6E00CA3E78 /* ObjectsStack.swift */,
+				921E5E5729C802C100CA3E78 /* Battleboard.swift */,
 			);
 			path = Secondary;
 			sourceTree = "<group>";
@@ -240,9 +249,12 @@
 				9224323C299DC14200279EAA /* AgainstCPUView.swift in Sources */,
 				9283A10329BEB89100B6C393 /* ViewModel.swift in Sources */,
 				924223EF29ADCFFB0054A44A /* ToggleButton.swift in Sources */,
+				92FA69BB29C9525F00C3F3BB /* AppDelegate.swift in Sources */,
 				92336ACA29AEFB8900CFA4E2 /* UserChoiceButtons.swift in Sources */,
+				921E5E5829C802C100CA3E78 /* Battleboard.swift in Sources */,
 				92A9D15629B1876300CDE9A5 /* RoundOutcomes.swift in Sources */,
 				9208547F29AC4F0200777BA5 /* MainView.swift in Sources */,
+				921E5E5629C7FE6E00CA3E78 /* ObjectsStack.swift in Sources */,
 				9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */,
 				9283A10729BEBCC800B6C393 /* BackgroundColor.swift in Sources */,
 				92336ACF29AEFE2700CFA4E2 /* ChoiceOptions.swift in Sources */,
@@ -381,11 +393,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RockPaperScissors/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -412,11 +424,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RockPaperScissors/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

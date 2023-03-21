@@ -13,24 +13,38 @@ struct MainView: View {
 	
 	var body: some View {
 		ZStack {
-//			Color.red
 			BackgroundColor() 
 			VStack(spacing: 60) {
 				ToggleButton()
+				
 				Button(action: {
 					showCPUModal.toggle()
 				}) {
 					Text("VS CPU")
 						.buttonsModifier()
 				}
+				.fullScreenCover(isPresented: $showCPUModal) {
+					AgainstCPUView()
+				}
+				
+				Button(action: {
+					showPlayerModal.toggle()
+//					Lock the view into landscape mode
+					AppDelegate.orientationLock = UIInterfaceOrientationMask.landscape
+					UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+					UIViewController.attemptRotationToDeviceOrientation()
+				}) {
+					Text("VS Player")
+						.buttonsModifier()
+				}
+				.fullScreenCover(isPresented: $showPlayerModal) {
+					AgainstPlayerView()
+					}
 
 			}
 
 
 		}.ignoresSafeArea()
-			.fullScreenCover(isPresented: $showCPUModal) {
-				AgainstCPUView()
-			}
 
 	}
 

@@ -9,6 +9,9 @@ import SwiftUI
 import WrappingStack
 
 struct AgainstCPUView: View {
+	@AppStorage("isToggleOn") private var isToggleOn: Bool = false
+	@ObservedObject var viewModel = ViewModel()
+	
 	@State private var battleboardBG: Color = .white.opacity(0)
 	@State private var leftObjectOffset: CGFloat = -120
 	@State private var rightObjectOffset: CGFloat = 120
@@ -21,8 +24,8 @@ struct AgainstCPUView: View {
 	
 	@State private var outcome: RoundOutcomes = .Draw
 	
-	@State private var usersChoice = ""
-	@State private var computersChoice = ""
+	@State private var usersChoice = ViewModel().leftSideChoice
+	@State private var computersChoice = ViewModel().rightSideChoice
 	
 	@State var userObj = ChoiceOption.Rock
 	@State var computerObj = ChoiceOption.Spock
@@ -32,7 +35,6 @@ struct AgainstCPUView: View {
     var body: some View {
 			ZStack() {
 				BackgroundColor()
-				
 				
 // MARK: Toggle button
 				
@@ -82,23 +84,24 @@ struct AgainstCPUView: View {
 					
 					//	MARK: User choice buttons
 					
-					WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
-						ForEach(ChoiceOption.allCases, id: \.self) { obj in
-							Button {
-								chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
-								isAnimated.toggle()
-							} label: {
-								Image(obj.rawValue)
-									.resizable()
+						WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
+							ForEach(ChoiceOption.allCases, id: \.self) { obj in
+								Button {
+									chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
+									isAnimated.toggle()
+								} label: {
+									Image(obj.rawValue)
+										.resizable()
+								}
+								.disabled(areChoiceButtonsDisabled)
+								.frame(width: 50, height: 50)
+								.padding()
+								.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
+								.clipShape(Circle())
+								.shadow(radius: 3)
 							}
-							.disabled(areChoiceButtonsDisabled)
-							.frame(width: 50, height: 50)
-							.padding()
-							.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
-							.clipShape(Circle())
-							.shadow(radius: 3)
 						}
-					}
+					
 					
 					Spacer()
 				}
@@ -169,7 +172,7 @@ struct AgainstCPUView: View {
 			usersChoice = ""
 		}
 	}
-	
+		
 	func userWins() {
 		outcome = .LeftSideWins
 		userScore += 1

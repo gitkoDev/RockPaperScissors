@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 class ViewModel: ObservableObject {
-	
+	@Published var leftSideChoice: String = ""
+	@Published var rightSideChoice: String = ""
 }
 
 

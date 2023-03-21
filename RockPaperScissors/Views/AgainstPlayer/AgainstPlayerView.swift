@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct AgainstPlayerView: View {
-	@Binding var isShown: Bool
+
     var body: some View {
 			ZStack {
-				Color.background
+				BackgroundColor()
+
+				VStack(spacing: 20) {
+
+					Spacer().frame(height: 35)
+					HStack {
+						ToggleButton()
+						Spacer()
+						DismissButton()
+					}
+					.padding(30)
+					Spacer()
+					Text("HI")
+					Spacer()
+				}
 				
-				Text("HI")
+
+				
+
+				
+				
 			}
+			.ignoresSafeArea()
     }
 }
 

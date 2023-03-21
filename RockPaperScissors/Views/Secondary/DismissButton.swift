@@ -13,6 +13,11 @@ struct DismissButton: View {
     var body: some View {
 			Button {
 				self.dismiss()
+//				Code to revert orientation back to portrait mode
+				AppDelegate.orientationLock = UIInterfaceOrientationMask.portrait
+				UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+				UIViewController.attemptRotationToDeviceOrientation()
+
 			} label: {
 					Image(systemName: "xmark")
 					.font(.title2.bold())
