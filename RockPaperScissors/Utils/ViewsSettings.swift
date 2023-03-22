@@ -8,16 +8,13 @@
 import Foundation
 import SwiftUI
 
-class ViewModel: ObservableObject {
+class ViewsSettings: ObservableObject {
 	@Published var leftSideChoice: String = ""
 	@Published var rightSideChoice: String = ""
 
 	@Published var outcome: RoundOutcomes = .Draw
 
 	@Published var userScore = 0
-
-//	@State private var usersChoice = ViewModel().leftSideChoice
-//	@State private var computersChoice = ViewModel().rightSideChoice
 
 	@Published var areChoiceButtonsDisabled = false
 
@@ -29,10 +26,6 @@ class ViewModel: ObservableObject {
 	let timerDelay: Double = 2
 
 	func chooseAnObject(userObj: ChoiceOption, computerObj: ChoiceOption) {
-		print("user chose \(userObj)")
-//		usersChoice = userObj.rawValue
-//		computersChoice = computerObj.rawValue
-
 		leftSideChoice = userObj.rawValue
 		rightSideChoice = computerObj.rawValue
 
@@ -75,7 +68,6 @@ class ViewModel: ObservableObject {
 			}
 		}
 
-
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
 			self.leftSideChoice = ""
 			self.rightSideChoice = ""
@@ -105,9 +97,7 @@ class ViewModel: ObservableObject {
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
 			self.outcome = .NotStarted
-
 			self.battleboardAnimation(outcome: self.outcome)
-
 			self.leftObjectOffset = -130
 			self.rightObjectOffset = 130
 
@@ -116,8 +106,8 @@ class ViewModel: ObservableObject {
 
 	func battleboardAnimation(outcome: RoundOutcomes) {
 		withAnimation(.easeOut(duration: 1)) {
+			
 			switch outcome {
-
 			case .LeftSideWins:
 				battleboardBG = .victoryBackround
 				print(leftObjectOffset)
@@ -131,12 +121,9 @@ class ViewModel: ObservableObject {
 				battleboardBG = .white.opacity(0)
 				print("default")
 			}
-
+			
 			leftObjectOffset = 0
 			rightObjectOffset = 0
-
-
-
 		}
 	}
 

@@ -10,7 +10,7 @@ import WrappingStack
 
 struct AgainstCPUView: View {
 	@AppStorage("isToggleOn") private var isToggleOn: Bool = false
-	@StateObject var viewModel = ViewModel()
+	@StateObject var viewsSettings = ViewsSettings()
 	
     var body: some View {
 			ZStack() {
@@ -29,15 +29,15 @@ struct AgainstCPUView: View {
 					
 					Spacer().frame(height: 15)
 					
-					Battleboard(viewModel: viewModel)
+					Battleboard(viewsSettings: viewsSettings)
 					
 					Spacer().frame(height: 20)
 					
 					// MARK: User score
-					Text("score: \(viewModel.userScore)")
+					Text("score: \(viewsSettings.userScore)")
 						.font(.custom("JosefinSansRoman-Light", size: 50))
 						.foregroundColor(Color(red: 0.25, green: 0.25, blue: 0.25))
-						.offset(y: viewModel.scoreBounceOffset)
+						.offset(y: viewsSettings.scoreBounceOffset)
 
 					Spacer()
 					
@@ -48,12 +48,12 @@ struct AgainstCPUView: View {
 							ForEach(ChoiceOption.allCases, id: \.self) { obj in
 								Button {
 //									chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
-									viewModel.chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
+									viewsSettings.chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
 								} label: {
 									Image(obj.rawValue)
 										.resizable()
 								}
-								.disabled(viewModel.areChoiceButtonsDisabled)
+								.disabled(viewsSettings.areChoiceButtonsDisabled)
 								.frame(width: 50, height: 50)
 								.padding()
 								.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))

@@ -9,7 +9,7 @@ import SwiftUI
 import WrappingStack
 
 struct ObjectsStack: View {
-	 var viewModel = ViewModel()
+	 var viewModel = ViewsSettings()
 	var chooseAnObject: () -> Void
 	
 	var body: some View {

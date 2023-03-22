@@ -9,8 +9,8 @@ import SwiftUI
 import WrappingStack
 
 struct AgainstPlayerView: View {
-	@State private var leftSideChoice = ViewModel().leftSideChoice
-	@State private var rightSideChoice = ViewModel().rightSideChoice
+	@State private var leftSideChoice = ViewsSettings().leftSideChoice
+	@State private var rightSideChoice = ViewsSettings().rightSideChoice
 
     var body: some View {
 			ZStack {
@@ -48,7 +48,7 @@ struct AgainstPlayerView: View {
 						}
 						
 						
-						Battleboard(viewModel: ViewModel())
+						Battleboard(viewsSettings: ViewsSettings())
 						
 						WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
 							ForEach(ChoiceOption.allCases, id: \.self) { obj in

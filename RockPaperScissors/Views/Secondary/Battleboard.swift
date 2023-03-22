@@ -8,25 +8,23 @@
 import SwiftUI
 
 struct Battleboard: View {
-	@ObservedObject var viewModel: ViewModel
+	@ObservedObject var viewsSettings: ViewsSettings
 	
     var body: some View {
 				HStack {
-	//				Image(leftSideChoice)
-					Image("rock")
+					Image(viewsSettings.leftSideChoice)
 						.resizable()
 						.frame(width: 80, height: 80)
-						.offset(x: viewModel.leftObjectOffset)
+						.offset(x: viewsSettings.leftObjectOffset)
 					Spacer().frame(width: 100)
-	//				Image(rightSideChoice)
-					Image("scissorsAlt")
+					Image(viewsSettings.rightSideChoice)
 						.resizable()
 						.frame(width: 80, height: 80)
-						.offset(x: viewModel.rightObjectOffset)
+						.offset(x: viewsSettings.rightObjectOffset)
 				}
 				.frame(width: 350, height: 170)
 				.background(.ultraThinMaterial.opacity(0.8))
-				.background(viewModel.battleboardBG)
+				.background(viewsSettings.battleboardBG)
 				.clipShape(RoundedRectangle(cornerRadius: 10))
 			.shadow(radius: 2)
 			
@@ -35,6 +33,6 @@ struct Battleboard: View {
 
 struct Battleboard_Previews: PreviewProvider {
     static var previews: some View {
-        Battleboard(viewModel: ViewModel())
+        Battleboard(viewsSettings: ViewsSettings())
     }
 }
