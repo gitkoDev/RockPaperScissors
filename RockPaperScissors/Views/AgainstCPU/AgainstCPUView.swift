@@ -11,6 +11,7 @@ import WrappingStack
 struct AgainstCPUView: View {
 	@AppStorage("isToggleOn") private var isToggleOn: Bool = false
 	@StateObject var viewsSettings = ViewsSettings()
+	@State private var gameMode: ViewsSettings.GameModes = .againstCPU
 	
     var body: some View {
 			ZStack() {
@@ -43,25 +44,7 @@ struct AgainstCPUView: View {
 					
 					//	MARK: User choice buttons
 					
-					
-						WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
-							ForEach(ChoiceOption.allCases, id: \.self) { obj in
-								Button {
-//									chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
-									viewsSettings.chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
-								} label: {
-									Image(obj.rawValue)
-										.resizable()
-								}
-								.disabled(viewsSettings.areChoiceButtonsDisabled)
-								.frame(width: 50, height: 50)
-								.padding()
-								.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
-								.clipShape(Circle())
-								.shadow(radius: 3)
-							}
-						}
-					
+					ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode)
 					
 					Spacer()
 				}

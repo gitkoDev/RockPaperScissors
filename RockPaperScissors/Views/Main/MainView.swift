@@ -10,8 +10,10 @@ import SwiftUI
 struct MainView: View {
 	@State private var showCPUModal = false
 	@State private var showPlayerModal = false
+	@ObservedObject var viewsSettings = ViewsSettings()
 	
 	var body: some View {
+		
 		ZStack {
 			BackgroundColor() 
 			VStack(spacing: 60) {
@@ -19,6 +21,7 @@ struct MainView: View {
 				
 				Button(action: {
 					showCPUModal.toggle()
+
 				}) {
 					Text("VS CPU")
 						.buttonsModifier()
@@ -29,6 +32,7 @@ struct MainView: View {
 				
 				Button(action: {
 					showPlayerModal.toggle()
+
 //					Lock the view into landscape mode
 					AppDelegate.orientationLock = UIInterfaceOrientationMask.landscape
 					UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")

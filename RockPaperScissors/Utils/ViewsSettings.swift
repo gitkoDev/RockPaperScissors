@@ -5,10 +5,14 @@
 //  Created by Gitko Denis on 13.03.2023.
 //
 
-import Foundation
 import SwiftUI
 
 class ViewsSettings: ObservableObject {
+	enum GameModes: String {
+		case againstCPU = "CPU"
+		case againstPlayer = "Player"
+	}
+
 	@Published var leftSideChoice: String = ""
 	@Published var rightSideChoice: String = ""
 
@@ -22,6 +26,8 @@ class ViewsSettings: ObservableObject {
 	@Published var leftObjectOffset: CGFloat = -120
 	@Published var rightObjectOffset: CGFloat = 120
 	@Published var scoreBounceOffset: CGFloat = 0
+	
+	@Published var buttonsSize: CGFloat = 10
 
 	let timerDelay: Double = 2
 

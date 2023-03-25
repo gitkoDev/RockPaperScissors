@@ -9,33 +9,38 @@ import SwiftUI
 import WrappingStack
 
 struct ObjectsStack: View {
-	 var viewModel = ViewsSettings()
-	var chooseAnObject: () -> Void
+	@ObservedObject var viewsSettings: ViewsSettings
+	@Binding var gameMode: ViewsSettings.GameModes
 	
 	var body: some View {
-		Text("Gi")
-			WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
-				ForEach(ChoiceOption.allCases, id: \.self) { obj in
-					Button {
-						chooseAnObject()
-//						chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
-					} label: {
-						Image(obj.rawValue)
-							.resizable()
-					}
-					.disabled(viewModel.areChoiceButtonsDisabled)
-					.frame(width: 50, height: 50)
-					.padding()
-					.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
-					.clipShape(Circle())
-					.shadow(radius: 3)
+		WrappingHStack(
+			id: \.self, alignment: .center,
+			horizontalSpacing: gameMode == .againstPlayer ? 20 : 30, verticalSpacing: 15) {
+			ForEach(ChoiceOption.allCases, id: \.self) { obj in
+				Button {
+					viewsSettings.chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
+				} label: {
+					Image(obj.rawValue)
+						.resizable()
 				}
+				.disabled(viewsSettings.areChoiceButtonsDisabled)
+				.frame(width:
+								gameMode == .againstPlayer ? 40 : 50)
+				.frame(height: gameMode == .againstPlayer ? 40 : 50)
+				.padding()
+				.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
+				.clipShape(Circle())
+				.shadow(radius: 3)
+			}
+		}
+		
+				
 			}
     }
-}
 
-//struct ObjectsStack_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ObjectsStack()
-//    }
-//}
+
+struct ObjectsStack_Previews: PreviewProvider {
+    static var previews: some View {
+			ObjectsStack(viewsSettings: ViewsSettings(), gameMode: .constant(.againstPlayer))
+    }
+}

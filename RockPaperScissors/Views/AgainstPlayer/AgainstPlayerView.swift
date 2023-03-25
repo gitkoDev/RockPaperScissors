@@ -9,76 +9,37 @@ import SwiftUI
 import WrappingStack
 
 struct AgainstPlayerView: View {
-	@State private var leftSideChoice = ViewsSettings().leftSideChoice
-	@State private var rightSideChoice = ViewsSettings().rightSideChoice
+	@StateObject var viewsSettings = ViewsSettings()
+	@State private var gameMode: ViewsSettings.GameModes = .againstPlayer
 
     var body: some View {
 			ZStack {
 				BackgroundColor()
 
-				VStack(spacing: 20) {
+				VStack(spacing: 0) {
 
 					HStack {
 						ToggleButton()
 						Spacer()
 						DismissButton()
 					}
-					.padding(.horizontal, 40)
-					.padding(.vertical, 10)
+					.padding(.horizontal, 50)
+					.padding(.vertical, 20)
 					
 					Spacer()
 					
 					HStack {
-						WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
-							ForEach(ChoiceOption.allCases, id: \.self) { obj in
-								Button {
-//									chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
-//									isAnimated.toggle()
-								} label: {
-									Image(obj.rawValue)
-										.resizable()
-								}
-	//							.disabled(areChoiceButtonsDisabled)
-								.frame(width: 40, height: 40)
-								.padding()
-								.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
-								.clipShape(Circle())
-								.shadow(radius: 3)
-							}
-						}
-						
+						ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode)
 						
 						Battleboard(viewsSettings: ViewsSettings())
 						
-						WrappingHStack(id: \.self, alignment: .center, horizontalSpacing: 30, verticalSpacing: 15) {
-							ForEach(ChoiceOption.allCases, id: \.self) { obj in
-								Button {
-	//								chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
-	//								isAnimated.toggle()
-								} label: {
-									Image(obj.rawValue)
-										.resizable()
-								}
-	//							.disabled(areChoiceButtonsDisabled)
-								.frame(width: 40, height: 40)
-								.padding()
-								.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
-								.clipShape(Circle())
-								.shadow(radius: 3)
-							}
-						}
+						ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode)
 					}
 					.padding(.horizontal, 50)
 
 				Spacer()
 					
 				}
-				
-
-				
-
-				
-				
 			}
 			.ignoresSafeArea()
     }
@@ -135,7 +96,6 @@ struct AgainstPlayerView: View {
 //				usersChoice = ""
 //			}
 //		}
-	
 }
 
 struct AgainstPlayerView_Previews: PreviewProvider {
