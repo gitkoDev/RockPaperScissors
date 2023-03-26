@@ -19,19 +19,19 @@ struct AgainstPlayerView: View {
 				VStack(spacing: 0) {
 
 					HStack {
-						ToggleButton()
-						Spacer()
 						DismissButton()
+						
+						Spacer()
 					}
 					.padding(.horizontal, 50)
-					.padding(.vertical, 20)
+					.padding(.top, 20)
 					
 					Spacer()
 					
 					HStack {
 						ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode)
 						
-						Battleboard(viewsSettings: ViewsSettings())
+						Battleboard(viewsSettings: ViewsSettings(), gameMode: $gameMode)
 						
 						ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode)
 					}

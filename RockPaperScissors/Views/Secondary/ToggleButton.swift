@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ToggleButton: View {
-	@AppStorage("isToggleOn") private var isToggleOn: Bool = false
+//	@AppStorage("isToggleOn") private var isToggleOn: Bool = false
+	@ObservedObject var viewsSettings: ViewsSettings
 	
 	var body: some View {
 			ZStack {
@@ -18,7 +19,7 @@ struct ToggleButton: View {
 					.shadow(radius: 3)
 
 				HStack {
-					if isToggleOn {
+					if viewsSettings.isToggleOn {
 						Spacer()
 						Image("scissors")
 							.resizable()
@@ -32,7 +33,7 @@ struct ToggleButton: View {
 							.foregroundColor(.white)
 					}
 					
-					if !isToggleOn {
+					if !viewsSettings.isToggleOn {
 						Spacer()
 						Image("scissorsAlt")
 							.resizable()
@@ -41,10 +42,11 @@ struct ToggleButton: View {
 					}
 
 				}
-				.animation(.default, value: isToggleOn)
+				.animation(.default, value: viewsSettings.isToggleOn)
 				.frame(width: 100, height: 50)
 				.onTapGesture {
-						isToggleOn.toggle()
+					viewsSettings.isToggleOn.toggle()
+					print(viewsSettings.isToggleOn)
 				}
 			}
     }
@@ -52,6 +54,6 @@ struct ToggleButton: View {
 
 struct ToggleButton_Previews: PreviewProvider {
     static var previews: some View {
-			ToggleButton()
+			ToggleButton(viewsSettings: ViewsSettings())
     }
 }

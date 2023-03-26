@@ -12,6 +12,8 @@ class ViewsSettings: ObservableObject {
 		case againstCPU = "CPU"
 		case againstPlayer = "Player"
 	}
+	
+	@AppStorage("isToggleOn") var isToggleOn: Bool = false
 
 	@Published var leftSideChoice: String = ""
 	@Published var rightSideChoice: String = ""
@@ -27,13 +29,18 @@ class ViewsSettings: ObservableObject {
 	@Published var rightObjectOffset: CGFloat = 120
 	@Published var scoreBounceOffset: CGFloat = 0
 	
-	@Published var buttonsSize: CGFloat = 10
-
 	let timerDelay: Double = 2
 
-	func chooseAnObject(userObj: ChoiceOption, computerObj: ChoiceOption) {
-		leftSideChoice = userObj.rawValue
-		rightSideChoice = computerObj.rawValue
+	func chooseAnObject(userObj: ChoiceOptions, computerObj: ChoiceOptions) {
+//		Change battleboard images style if the toggle has been switched
+		if isToggleOn {
+			leftSideChoice = userObj.rawValue
+			rightSideChoice = computerObj.rawValue
+		} else {
+			leftSideChoice = userObj.rawValue + "Alt"
+			rightSideChoice = computerObj.rawValue + "Alt"
+		}
+	
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
 			self.areChoiceButtonsDisabled = false

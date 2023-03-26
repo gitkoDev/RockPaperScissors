@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Battleboard: View {
 	@ObservedObject var viewsSettings: ViewsSettings
+	@Binding var gameMode: ViewsSettings.GameModes
 	
     var body: some View {
 				HStack {
@@ -22,7 +23,8 @@ struct Battleboard: View {
 						.frame(width: 80, height: 80)
 						.offset(x: viewsSettings.rightObjectOffset)
 				}
-				.frame(width: 350, height: 170)
+				.frame(width: gameMode == .againstPlayer ? 300 : 350)
+				.frame(height: gameMode == .againstPlayer ? 220 : 170)
 				.background(.ultraThinMaterial.opacity(0.8))
 				.background(viewsSettings.battleboardBG)
 				.clipShape(RoundedRectangle(cornerRadius: 10))
@@ -33,6 +35,6 @@ struct Battleboard: View {
 
 struct Battleboard_Previews: PreviewProvider {
     static var previews: some View {
-        Battleboard(viewsSettings: ViewsSettings())
+			Battleboard(viewsSettings: ViewsSettings(), gameMode: .constant(ViewsSettings.GameModes.againstPlayer))
     }
 }

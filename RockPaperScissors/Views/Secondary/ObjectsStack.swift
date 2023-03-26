@@ -15,18 +15,19 @@ struct ObjectsStack: View {
 	var body: some View {
 		WrappingHStack(
 			id: \.self, alignment: .center,
-			horizontalSpacing: gameMode == .againstPlayer ? 20 : 30, verticalSpacing: 15) {
-			ForEach(ChoiceOption.allCases, id: \.self) { obj in
+			horizontalSpacing: gameMode == .againstPlayer ? 15 : 30, verticalSpacing: 15) {
+			ForEach(ChoiceOptions.allCases, id: \.self) { obj in
 				Button {
-					viewsSettings.chooseAnObject(userObj: obj, computerObj: ChoiceOption.allCases.randomElement()!)
+					viewsSettings.chooseAnObject(userObj: obj, computerObj: ChoiceOptions.allCases.randomElement()!)
 				} label: {
-					Image(obj.rawValue)
+// Change the buttons styling depending on where the toggle is on
+					Image(viewsSettings.isToggleOn ? obj.rawValue : obj.rawValue + "Alt")
 						.resizable()
 				}
 				.disabled(viewsSettings.areChoiceButtonsDisabled)
 				.frame(width:
-								gameMode == .againstPlayer ? 40 : 50)
-				.frame(height: gameMode == .againstPlayer ? 40 : 50)
+								gameMode == .againstPlayer ? 45 : 50)
+				.frame(height: gameMode == .againstPlayer ? 45 : 50)
 				.padding()
 				.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
 				.clipShape(Circle())

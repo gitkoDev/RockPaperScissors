@@ -21,16 +21,15 @@ struct AgainstCPUView: View {
 					
 					Spacer().frame(height: 35)
 					HStack {
-						ToggleButton()
-						Spacer()
 						DismissButton()
+						Spacer()
 					}
 					.padding(30)
 		// MARK: Battleboard
 					
 					Spacer().frame(height: 15)
 					
-					Battleboard(viewsSettings: viewsSettings)
+					Battleboard(viewsSettings: viewsSettings, gameMode: $gameMode)
 					
 					Spacer().frame(height: 20)
 					

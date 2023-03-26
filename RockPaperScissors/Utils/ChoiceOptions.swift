@@ -5,19 +5,10 @@
 //  Created by Gitko Denis on 01.03.2023.
 //
 
-enum ChoiceOption: String, CaseIterable {
+enum ChoiceOptions: String, CaseIterable {
 	case Rock = "rock"
 	case Paper = "paper"
 	case Scissors = "scissors"
 	case Lizard = "lizard"
 	case Spock = "spock"
-}
-
-
-enum AltChoiceOption: String, CaseIterable {
-	case Rock = "rockAlt"
-	case Paper = "paperAlt"
-	case Scissors = "scissorsAlt"
-	case Lizard = "lizardAlt"
-	case Spock = "spockAlt"
 }

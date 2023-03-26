@@ -17,7 +17,18 @@ struct MainView: View {
 		ZStack {
 			BackgroundColor() 
 			VStack(spacing: 60) {
-				ToggleButton()
+				
+				HStack(alignment: .top) {
+					ToggleButton(viewsSettings: viewsSettings)
+					Spacer()
+					Button {
+						
+					} label: {
+						Image(systemName: "gearshape.fill")
+					}
+
+				}
+				
 				
 				Button(action: {
 					showCPUModal.toggle()
