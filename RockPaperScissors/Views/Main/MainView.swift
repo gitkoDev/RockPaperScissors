@@ -18,25 +18,18 @@ struct MainView: View {
 			BackgroundColor(viewsSettings: viewsSettings)
 
 			VStack(spacing: 60) {
-				
 					HStack(alignment: .center) {
 						ToggleButton(viewsSettings: viewsSettings)
-
 						Spacer()
-						
-						Button {
-							
-						} label: {
-							Image(systemName: "gearshape.fill")
-								.font(.title)
-								.foregroundColor(.white)
-								.shadow(radius: 3)
-						}
+						SettingsButton()
 					}
 					.padding(.top, 80)
 					.padding(.horizontal, 30)
 				
-				Spacer()
+				
+				Image("spock")
+					.resizable()
+					.frame(width: 140, height: 140)
 				
 				Button(action: {
 					showCPUModal.toggle()
@@ -61,7 +54,6 @@ struct MainView: View {
 						.buttonsModifier()
 				}
 				
-				Spacer()
 				Spacer()
 				
 				.fullScreenCover(isPresented: $showPlayerModal) {
@@ -89,8 +81,16 @@ struct MenuButtons: ViewModifier {
 		.background(viewsSettings.isToggleOn ? Color.dismissButtonsBackgroundAlt : Color.dismissButtonsBackground)
 		.background(Rectangle().fill(.black))
 		.cornerRadius(10)
-		.shadow(color: .secondary, radius: 3, x: 1, y: 1)
+
 		.font(.custom("JosefinSansRoman-Medium", size: 22))
+		.padding(.all, 2.5)
+
+		.background(
+			RoundedRectangle(cornerRadius: 10)
+				.fill(Color.drawBackground)
+				.shadow(color: .secondary, radius: 3, x: 1, y: 1)
+		)
+
 	}
 }
 

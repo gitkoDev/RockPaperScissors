@@ -12,25 +12,40 @@ struct Battleboard: View {
 	@Binding var gameMode: ViewsSettings.GameModes
 	
     var body: some View {
-				HStack {
-						Image(viewsSettings.leftSideChoice)
-							.resizable()
-							.frame(width: 80, height: 80)
-							.offset(x: viewsSettings.leftObjectOffset)
-						Spacer().frame(width: 100)
-						Image(viewsSettings.rightSideChoice)
-							.resizable()
-							.frame(width: 80, height: 80)
-							.offset(x: viewsSettings.rightObjectOffset)
-					}
-					.frame(width: gameMode == .againstPlayer ? 300 : 350)
-					.frame(height: gameMode == .againstPlayer ? 220 : 170)
-					.background(.ultraThinMaterial.opacity(0.8))
-					.background(viewsSettings.battleboardBG)
-					.clipShape(RoundedRectangle(cornerRadius: 10))
-				.shadow(radius: 2)
-				
-
+			VStack {
+				HStack(alignment: .bottom) {
+							Image(viewsSettings.leftSideChoice)
+								.resizable()
+								.frame(width: 80, height: 80)
+								.offset(x: viewsSettings.leftObjectOffset)
+								.offset(y: -20)
+							Spacer().frame(width: 100)
+						
+						
+							Image(viewsSettings.rightSideChoice)
+								.resizable()
+								.frame(width: 80, height: 80)
+								.offset(x: viewsSettings.rightObjectOffset)
+								.offset(y: -20)
+						}
+						.frame(width: gameMode == .againstPlayer ? 300 : 350)
+						.frame(height: gameMode == .againstPlayer ? 220 : 220)
+						.background(.ultraThinMaterial.opacity(1))
+						.background(viewsSettings.battleboardBG)
+						.clipShape(RoundedRectangle(cornerRadius: 10))
+					.shadow(radius: 2)
+			}
+			
+			if gameMode == .againstCPU {
+							Text("score: \(viewsSettings.userScore)")
+					.font(.custom("JosefinSansRoman-Light", size: 35).weight(.medium))
+									.foregroundColor(.white)
+									.padding()
+									.background(
+										RoundedRectangle(cornerRadius: 10).fill(Color(red: 0.6, green: 0.6, blue: 0.6))
+									)
+									.offset(y: -86.5)
+			}
     }
 }
 

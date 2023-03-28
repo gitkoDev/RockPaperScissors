@@ -11,7 +11,6 @@ struct DismissButton: View {
 	@Environment(\.dismiss) var dismiss
 	@ObservedObject var viewsSettings = ViewsSettings()
 	
-	
     var body: some View {
 			Button {
 				self.dismiss()
@@ -35,7 +34,7 @@ struct DismissButton: View {
 								
 
 									.frame(width: 40, height: 40)
-									.shadow(radius: 3)
+									.shadow(radius: 4)
 								Circle()
 									.fill(Color.drawBackground)
 									.frame(width: 33)

@@ -20,8 +20,18 @@ struct AgainstPlayerView: View {
 
 					HStack {
 						DismissButton()
-						
 						Spacer()
+						
+						Text("0 : 0")
+				.font(.custom("JosefinSansRoman-Light", size: 35).weight(.medium))
+								.foregroundColor(.white)
+								.padding()
+								.background(
+									RoundedRectangle(cornerRadius: 15).fill(Color(red: 0.7, green: 0.7, blue: 0.7))
+								)
+
+						Spacer()
+						SettingsButton()
 					}
 					.padding(.horizontal, 50)
 					.padding(.top, 20)
