@@ -15,20 +15,28 @@ struct MainView: View {
 	var body: some View {
 		
 		ZStack {
-			BackgroundColor() 
+			BackgroundColor(viewsSettings: viewsSettings)
+
 			VStack(spacing: 60) {
 				
-				HStack(alignment: .top) {
-					ToggleButton(viewsSettings: viewsSettings)
-					Spacer()
-					Button {
-						
-					} label: {
-						Image(systemName: "gearshape.fill")
-					}
+					HStack(alignment: .center) {
+						ToggleButton(viewsSettings: viewsSettings)
 
-				}
+						Spacer()
+						
+						Button {
+							
+						} label: {
+							Image(systemName: "gearshape.fill")
+								.font(.title)
+								.foregroundColor(.white)
+								.shadow(radius: 3)
+						}
+					}
+					.padding(.top, 80)
+					.padding(.horizontal, 30)
 				
+				Spacer()
 				
 				Button(action: {
 					showCPUModal.toggle()
@@ -52,6 +60,10 @@ struct MainView: View {
 					Text("VS Player")
 						.buttonsModifier()
 				}
+				
+				Spacer()
+				Spacer()
+				
 				.fullScreenCover(isPresented: $showPlayerModal) {
 					AgainstPlayerView()
 					}
@@ -59,22 +71,26 @@ struct MainView: View {
 			}
 
 
-		}.ignoresSafeArea()
+		}
+		.ignoresSafeArea()
 
 	}
 
 }
 
 struct MenuButtons: ViewModifier {
+	@ObservedObject var viewsSettings = ViewsSettings()
+	
 	func body(content: Content) -> some View {
 		content
-		.foregroundColor(.primary)
+		.foregroundColor(.white)
 		.padding(35)
 		.padding(.horizontal, 10)
-		.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
+		.background(viewsSettings.isToggleOn ? Color.dismissButtonsBackgroundAlt : Color.dismissButtonsBackground)
+		.background(Rectangle().fill(.black))
 		.cornerRadius(10)
 		.shadow(color: .secondary, radius: 3, x: 1, y: 1)
-		.font(.custom("JosefinSansRoman-Medium", size: 20))
+		.font(.custom("JosefinSansRoman-Medium", size: 22))
 	}
 }
 

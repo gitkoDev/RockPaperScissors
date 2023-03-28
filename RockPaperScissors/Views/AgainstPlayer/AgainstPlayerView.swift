@@ -14,7 +14,7 @@ struct AgainstPlayerView: View {
 
     var body: some View {
 			ZStack {
-				BackgroundColor()
+				BackgroundColor(viewsSettings: viewsSettings)
 
 				VStack(spacing: 0) {
 

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DismissButton: View {
 	@Environment(\.dismiss) var dismiss
+	@ObservedObject var viewsSettings = ViewsSettings()
+	
 	
     var body: some View {
 			Button {
@@ -26,7 +28,12 @@ struct DismissButton: View {
 							ZStack {
 								Circle()
 									.fill(
-										LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
+										viewsSettings.isToggleOn ?
+										Color.dismissButtonsBackgroundAlt
+										: Color.dismissButtonsBackground
+									)
+								
+
 									.frame(width: 40, height: 40)
 									.shadow(radius: 3)
 								Circle()

@@ -21,18 +21,30 @@ struct ObjectsStack: View {
 					viewsSettings.chooseAnObject(userObj: obj, computerObj: ChoiceOptions.allCases.randomElement()!)
 				} label: {
 // Change the buttons styling depending on where the toggle is on
-					Image(viewsSettings.isToggleOn ? obj.rawValue : obj.rawValue + "Alt")
+					Image(viewsSettings.isToggleOn ? obj.rawValue + "Alt" : obj.rawValue)
 						.resizable()
 				}
 				.disabled(viewsSettings.areChoiceButtonsDisabled)
 				.frame(width:
-								gameMode == .againstPlayer ? 45 : 50)
-				.frame(height: gameMode == .againstPlayer ? 45 : 50)
+								gameMode == .againstPlayer ? 40 : 45)
+				.frame(height: gameMode == .againstPlayer ? 40 : 45)
 				.padding()
-				.background(LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom))
-				.clipShape(Circle())
-				.shadow(radius: 3)
+				.background(
+					Circle()
+						.fill(viewsSettings.isToggleOn ?
+									Color.dismissButtonsBackgroundAlt :
+										Color.dismissButtonsBackground)
+
+				)
+				.frame(width: gameMode == .againstCPU ? 83 : 78)
+				.frame(height: gameMode == .againstCPU ? 83 : 78)
+				.background(
+					Circle().fill(.white)
+				)
+				.shadow(radius: 5)
+				
 			}
+				
 		}
 		
 				

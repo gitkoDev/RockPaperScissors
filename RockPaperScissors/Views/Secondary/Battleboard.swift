@@ -13,23 +13,24 @@ struct Battleboard: View {
 	
     var body: some View {
 				HStack {
-					Image(viewsSettings.leftSideChoice)
-						.resizable()
-						.frame(width: 80, height: 80)
-						.offset(x: viewsSettings.leftObjectOffset)
-					Spacer().frame(width: 100)
-					Image(viewsSettings.rightSideChoice)
-						.resizable()
-						.frame(width: 80, height: 80)
-						.offset(x: viewsSettings.rightObjectOffset)
-				}
-				.frame(width: gameMode == .againstPlayer ? 300 : 350)
-				.frame(height: gameMode == .againstPlayer ? 220 : 170)
-				.background(.ultraThinMaterial.opacity(0.8))
-				.background(viewsSettings.battleboardBG)
-				.clipShape(RoundedRectangle(cornerRadius: 10))
-			.shadow(radius: 2)
-			
+						Image(viewsSettings.leftSideChoice)
+							.resizable()
+							.frame(width: 80, height: 80)
+							.offset(x: viewsSettings.leftObjectOffset)
+						Spacer().frame(width: 100)
+						Image(viewsSettings.rightSideChoice)
+							.resizable()
+							.frame(width: 80, height: 80)
+							.offset(x: viewsSettings.rightObjectOffset)
+					}
+					.frame(width: gameMode == .againstPlayer ? 300 : 350)
+					.frame(height: gameMode == .againstPlayer ? 220 : 170)
+					.background(.ultraThinMaterial.opacity(0.8))
+					.background(viewsSettings.battleboardBG)
+					.clipShape(RoundedRectangle(cornerRadius: 10))
+				.shadow(radius: 2)
+				
+
     }
 }
 

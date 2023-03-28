@@ -33,7 +33,7 @@ class ViewsSettings: ObservableObject {
 
 	func chooseAnObject(userObj: ChoiceOptions, computerObj: ChoiceOptions) {
 //		Change battleboard images style if the toggle has been switched
-		if isToggleOn {
+		if !isToggleOn {
 			leftSideChoice = userObj.rawValue
 			rightSideChoice = computerObj.rawValue
 		} else {

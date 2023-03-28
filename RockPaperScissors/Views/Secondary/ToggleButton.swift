@@ -14,7 +14,7 @@ struct ToggleButton: View {
 	var body: some View {
 			ZStack {
 				Capsule()
-					.fill(Color.toggleButtonBackground)
+					.fill(Color.toggleButtonsBackground)
 					.frame(width: 100, height: 45)
 					.shadow(radius: 3)
 

@@ -15,7 +15,7 @@ struct AgainstCPUView: View {
 	
     var body: some View {
 			ZStack() {
-				BackgroundColor()
+				BackgroundColor(viewsSettings: viewsSettings)
 				
 				VStack(spacing: 20) {
 					
@@ -35,7 +35,7 @@ struct AgainstCPUView: View {
 					
 					// MARK: User score
 					Text("score: \(viewsSettings.userScore)")
-						.font(.custom("JosefinSansRoman-Light", size: 50))
+						.font(.custom("JosefinSansRoman-Light", size: 60).weight(.light))
 						.foregroundColor(Color(red: 0.25, green: 0.25, blue: 0.25))
 						.offset(y: viewsSettings.scoreBounceOffset)
 

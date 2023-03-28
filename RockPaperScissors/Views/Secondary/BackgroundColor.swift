@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct BackgroundColor: View {
-	@AppStorage("isToggleOn") private var isToggleOn: Bool = false
+	@ObservedObject var viewsSettings: ViewsSettings
 	
     var body: some View {
-			if isToggleOn {
-				Color.background
+			if viewsSettings.isToggleOn {
+					Image("grid")
+					.resizable(resizingMode: .tile)
 			} else {
 				Color.backgroundAlt
 			}
@@ -22,6 +23,6 @@ struct BackgroundColor: View {
 
 struct BackgroundColor_Previews: PreviewProvider {
     static var previews: some View {
-        BackgroundColor()
+        BackgroundColor(viewsSettings: ViewsSettings())
     }
 }
