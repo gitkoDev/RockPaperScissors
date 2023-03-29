@@ -31,14 +31,16 @@ struct DismissButton: View {
 										Color.dismissButtonsBackgroundAlt
 										: Color.dismissButtonsBackground
 									)
-								
-
+							
 									.frame(width: 40, height: 40)
-									.shadow(radius: 4)
+
 								Circle()
 									.fill(Color.drawBackground)
-									.frame(width: 33)
+									.frame(width: 32)
+									.frame(height: 32)
+								
 							}
+								.shadow(radius: 4)
 
 						)
 			}

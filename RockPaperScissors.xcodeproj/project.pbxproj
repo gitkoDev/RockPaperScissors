@@ -24,6 +24,7 @@
 		9290157729A6F2A300843CF0 /* WrappingStack in Frameworks */ = {isa = PBXBuildFile; productRef = 9290157629A6F2A300843CF0 /* WrappingStack */; };
 		9291741429D2A7FE00CBA31B /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291741329D2A7FE00CBA31B /* SettingsButton.swift */; };
 		92A9D15629B1876300CDE9A5 /* RoundOutcomes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9D15529B1876300CDE9A5 /* RoundOutcomes.swift */; };
+		92C4AD7429D3CB280038DE01 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C4AD7329D3CB280038DE01 /* SettingsView.swift */; };
 		92E9DA5029B6C472000A420D /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9DA4F29B6C472000A420D /* DismissButton.swift */; };
 		92FA69BB29C9525F00C3F3BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FA69BA29C9525F00C3F3BB /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		9283A10629BEBCC800B6C393 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		9291741329D2A7FE00CBA31B /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		92A9D15529B1876300CDE9A5 /* RoundOutcomes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundOutcomes.swift; sourceTree = "<group>"; };
+		92C4AD7329D3CB280038DE01 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		92E9DA4F29B6C472000A420D /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		92FA69BA29C9525F00C3F3BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,8 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				92A9D15229B06AF400CDE9A5 /* Main */,
-				92E9DA5129B6E07E000A420D /* AgainstCPU */,
 				92E9DA5229B6E096000A420D /* AgainstPlayer */,
+				92E9DA5129B6E07E000A420D /* AgainstCPU */,
+				92C4AD7229D3CA470038DE01 /* Settings */,
 				92A9D15429B06B0600CDE9A5 /* Secondary */,
 			);
 			path = Views;
@@ -151,6 +154,14 @@
 				9291741329D2A7FE00CBA31B /* SettingsButton.swift */,
 			);
 			path = Secondary;
+			sourceTree = "<group>";
+		};
+		92C4AD7229D3CA470038DE01 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				92C4AD7329D3CB280038DE01 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		92E9DA5129B6E07E000A420D /* AgainstCPU */ = {
@@ -255,6 +266,7 @@
 				9208547F29AC4F0200777BA5 /* MainView.swift in Sources */,
 				9291741429D2A7FE00CBA31B /* SettingsButton.swift in Sources */,
 				921E5E5629C7FE6E00CA3E78 /* ObjectsStack.swift in Sources */,
+				92C4AD7429D3CB280038DE01 /* SettingsView.swift in Sources */,
 				9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */,
 				9283A10729BEBCC800B6C393 /* BackgroundColor.swift in Sources */,
 				92336ACF29AEFE2700CFA4E2 /* ChoiceOptions.swift in Sources */,

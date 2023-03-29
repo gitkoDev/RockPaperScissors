@@ -10,7 +10,7 @@ import WrappingStack
 
 struct AgainstCPUView: View {
 	@AppStorage("isToggleOn") private var isToggleOn: Bool = false
-	@StateObject var viewsSettings = ViewsSettings()
+	@ObservedObject var viewsSettings = ViewsSettings()
 	@State private var gameMode: ViewsSettings.GameModes = .againstCPU
 	
     var body: some View {

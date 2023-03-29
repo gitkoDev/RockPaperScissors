@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ToggleButton: View {
-//	@AppStorage("isToggleOn") private var isToggleOn: Bool = false
 	@ObservedObject var viewsSettings: ViewsSettings
 	
 	var body: some View {

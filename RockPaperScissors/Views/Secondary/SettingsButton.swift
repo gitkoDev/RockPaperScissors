@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct SettingsButton: View {
+	@State private var showSettings = false
 	var body: some View {
 		Button {
-			
+			showSettings.toggle()
 		} label: {
 			Image(systemName: "gearshape.fill")
 				.font(.title3)
@@ -24,8 +25,9 @@ struct SettingsButton: View {
 					Circle().fill(Color.dismissButtonsBackground)
 						.shadow(radius: 4)
 				)
-
-
+		}
+		.fullScreenCover(isPresented: $showSettings) {
+			SettingsView()
 		}
 		
 	}

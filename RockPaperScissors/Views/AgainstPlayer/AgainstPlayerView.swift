@@ -53,59 +53,6 @@ struct AgainstPlayerView: View {
 			}
 			.ignoresSafeArea()
     }
-	
-	//	MARK: Properties and methods
-		
-//		func chooseAnObject(userObj: ChoiceOption, computerObj: ChoiceOption) {
-//			print("user chose \(userObj)")
-//			usersChoice = userObj.rawValue
-//			computersChoice = computerObj.rawValue
-//			
-//			DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
-//				areChoiceButtonsDisabled = false
-//			}
-//			areChoiceButtonsDisabled = true
-//			
-//			if userObj == computerObj {
-//				finishedInADraw()
-//			} else if userObj == .Rock {
-//				if computerObj == .Lizard || computerObj == .Scissors {
-//					userWins()
-//				} else {
-//					computerWins()
-//				}
-//			} else if userObj == .Paper {
-//				if computerObj == .Paper || computerObj == .Spock {
-//					userWins()
-//				} else {
-//					computerWins()
-//				}
-//			} else if userObj == .Scissors {
-//				if computerObj == .Paper || computerObj == .Lizard {
-//					userWins()
-//				} else {
-//					computerWins()
-//				}
-//			} else if userObj == .Lizard {
-//				if computerObj == .Spock || computerObj == .Paper {
-//					userWins()
-//				} else {
-//					computerWins()
-//				}
-//			} else if userObj == .Spock {
-//				if computerObj == .Scissors || computerObj == .Rock {
-//					userWins()
-//				} else {
-//					computerWins()
-//				}
-//			}
-//			
-//			
-//			DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
-//				computersChoice = ""
-//				usersChoice = ""
-//			}
-//		}
 }
 
 struct AgainstPlayerView_Previews: PreviewProvider {
