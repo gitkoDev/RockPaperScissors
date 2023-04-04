@@ -19,7 +19,6 @@ struct MainView: View {
 
 			VStack(spacing: 60) {
 					HStack(alignment: .center) {
-						ToggleButton(viewsSettings: viewsSettings)
 						Spacer()
 						SettingsButton()
 					}
@@ -78,7 +77,7 @@ struct MenuButtons: ViewModifier {
 		.foregroundColor(.white)
 		.padding(35)
 		.padding(.horizontal, 10)
-		.background(viewsSettings.isToggleOn ? Color.dismissButtonsBackgroundAlt : Color.dismissButtonsBackground)
+		.background(viewsSettings.isToggleOn ? Color.buttonsBackgroundAlt : Color.buttonsBackground)
 		.background(Rectangle().fill(.black))
 		.cornerRadius(10)
 

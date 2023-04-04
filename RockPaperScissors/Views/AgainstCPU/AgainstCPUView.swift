@@ -21,9 +21,8 @@ struct AgainstCPUView: View {
 					
 					Spacer().frame(height: 35)
 					HStack {
-						DismissButton()
 						Spacer()
-						SettingsButton()
+						DismissButton()
 					}
 					.padding(30)
 		// MARK: Battleboard
@@ -44,14 +43,14 @@ struct AgainstCPUView: View {
 			.ignoresSafeArea()
     }
 	
-//	init() {
-//		for fontFamily in UIFont.familyNames {
-//			print(fontFamily)
-//			for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
-//				print("-- \(fontName)")
-//			}
-//		}
-//	}
+	init() {
+		for fontFamily in UIFont.familyNames {
+			print(fontFamily)
+			for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
+				print("-- \(fontName)")
+			}
+		}
+	}
 	
 	}
 

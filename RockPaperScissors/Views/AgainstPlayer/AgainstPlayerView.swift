@@ -19,7 +19,6 @@ struct AgainstPlayerView: View {
 				VStack(spacing: 0) {
 
 					HStack {
-						DismissButton()
 						Spacer()
 						
 						Text("0 : 0")
@@ -31,7 +30,7 @@ struct AgainstPlayerView: View {
 								)
 
 						Spacer()
-						SettingsButton()
+						DismissButton()
 					}
 					.padding(.horizontal, 50)
 					.padding(.top, 20)

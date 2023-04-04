@@ -32,8 +32,8 @@ struct ObjectsStack: View {
 				.background(
 					Circle()
 						.fill(viewsSettings.isToggleOn ?
-									Color.dismissButtonsBackgroundAlt :
-										Color.dismissButtonsBackground)
+									Color.buttonsBackgroundAlt :
+										Color.buttonsBackground)
 
 				)
 				.frame(width: gameMode == .againstCPU ? 83 : 78)

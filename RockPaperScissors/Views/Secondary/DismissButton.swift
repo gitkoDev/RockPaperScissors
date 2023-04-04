@@ -28,8 +28,8 @@ struct DismissButton: View {
 								Circle()
 									.fill(
 										viewsSettings.isToggleOn ?
-										Color.dismissButtonsBackgroundAlt
-										: Color.dismissButtonsBackground
+										Color.buttonsBackgroundAlt
+										: Color.buttonsBackground
 									)
 							
 									.frame(width: 40, height: 40)

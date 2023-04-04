@@ -22,7 +22,7 @@ struct SettingsButton: View {
 				)
 				.frame(width: 42, height: 42)
 				.background(
-					Circle().fill(Color.dismissButtonsBackground)
+					Circle().fill(Color.accentPrimary)
 						.shadow(radius: 4)
 				)
 		}

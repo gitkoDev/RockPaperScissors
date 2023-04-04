@@ -16,6 +16,7 @@
 		9224323E299DC14200279EAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9224323D299DC14200279EAA /* Assets.xcassets */; };
 		92243241299DC14200279EAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92243240299DC14200279EAA /* Preview Assets.xcassets */; };
 		922644D229B5BDA10016416A /* JosefinSans-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 922644D129B5BDA10016416A /* JosefinSans-VariableFont_wght.ttf */; };
+		922FB68029DBD00B00AC44F0 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FB67F29DBD00B00AC44F0 /* HowToPlayView.swift */; };
 		92336AC829AED8F900CFA4E2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92336AC729AED8F900CFA4E2 /* Extensions.swift */; };
 		92336ACF29AEFE2700CFA4E2 /* ChoiceOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92336ACE29AEFE2700CFA4E2 /* ChoiceOptions.swift */; };
 		924223EF29ADCFFB0054A44A /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924223EE29ADCFFB0054A44A /* ToggleButton.swift */; };
@@ -41,6 +42,7 @@
 		92243240299DC14200279EAA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		922644CB29B5B23B0016416A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		922644D129B5BDA10016416A /* JosefinSans-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		922FB67F29DBD00B00AC44F0 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		92336AC729AED8F900CFA4E2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92336ACE29AEFE2700CFA4E2 /* ChoiceOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceOptions.swift; sourceTree = "<group>"; };
 		924223EE29ADCFFB0054A44A /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		922FB67E29DBCFE400AC44F0 /* HowToPlay */ = {
+			isa = PBXGroup;
+			children = (
+				922FB67F29DBD00B00AC44F0 /* HowToPlayView.swift */,
+			);
+			path = HowToPlay;
+			sourceTree = "<group>";
+		};
 		92336AC529AED8AF00CFA4E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +128,7 @@
 				92E9DA5229B6E096000A420D /* AgainstPlayer */,
 				92E9DA5129B6E07E000A420D /* AgainstCPU */,
 				92C4AD7229D3CA470038DE01 /* Settings */,
+				922FB67E29DBCFE400AC44F0 /* HowToPlay */,
 				92A9D15429B06B0600CDE9A5 /* Secondary */,
 			);
 			path = Views;
@@ -265,6 +276,7 @@
 				92A9D15629B1876300CDE9A5 /* RoundOutcomes.swift in Sources */,
 				9208547F29AC4F0200777BA5 /* MainView.swift in Sources */,
 				9291741429D2A7FE00CBA31B /* SettingsButton.swift in Sources */,
+				922FB68029DBD00B00AC44F0 /* HowToPlayView.swift in Sources */,
 				921E5E5629C7FE6E00CA3E78 /* ObjectsStack.swift in Sources */,
 				92C4AD7429D3CB280038DE01 /* SettingsView.swift in Sources */,
 				9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */,
