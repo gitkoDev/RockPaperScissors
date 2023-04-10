@@ -29,6 +29,8 @@ class ViewsSettings: ObservableObject {
 	@Published var rightObjectOffset: CGFloat = 120
 	@Published var scoreBounceOffset: CGFloat = 0
 	
+	@Published var chosenObjectScale: CGSize = CGSize(width: 1, height: 1)
+	
 	let timerDelay: Double = 2
 
 	func chooseAnObject(userObj: ChoiceOptions, computerObj: ChoiceOptions) {
@@ -46,6 +48,7 @@ class ViewsSettings: ObservableObject {
 			self.areChoiceButtonsDisabled = false
 		}
 		areChoiceButtonsDisabled = true
+		
 
 		if userObj == computerObj {
 			finishedInADraw()
@@ -113,11 +116,18 @@ class ViewsSettings: ObservableObject {
 			self.battleboardAnimation(outcome: self.outcome)
 			self.leftObjectOffset = -130
 			self.rightObjectOffset = 130
-
+			
+			withAnimation(.easeOut(duration: 0.2)) {
+				self.chosenObjectScale = CGSize(width: 1, height: 1)
+			}
 		}
 	}
 
 	func battleboardAnimation(outcome: RoundOutcomes) {
+		withAnimation(.easeIn(duration: 0.2)) {
+			chosenObjectScale = CGSize(width: 0.85, height: 0.85)
+		}
+		
 		withAnimation(.easeOut(duration: 1)) {
 			
 			switch outcome {

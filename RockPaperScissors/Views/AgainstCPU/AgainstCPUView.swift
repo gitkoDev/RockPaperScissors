@@ -43,14 +43,14 @@ struct AgainstCPUView: View {
 			.ignoresSafeArea()
     }
 	
-	init() {
-		for fontFamily in UIFont.familyNames {
-			print(fontFamily)
-			for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
-				print("-- \(fontName)")
-			}
-		}
-	}
+//	init() {
+//		for fontFamily in UIFont.familyNames {
+//			print(fontFamily)
+//			for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
+//				print("-- \(fontName)")
+//			}
+//		}
+//	}
 	
 	}
 

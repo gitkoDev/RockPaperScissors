@@ -19,6 +19,7 @@ struct ObjectsStack: View {
 			ForEach(ChoiceOptions.allCases, id: \.self) { obj in
 				Button {
 					viewsSettings.chooseAnObject(userObj: obj, computerObj: ChoiceOptions.allCases.randomElement()!)
+					print(obj)
 				} label: {
 // Change the buttons styling depending on where the toggle is on
 					Image(viewsSettings.isToggleOn ? obj.rawValue + "Alt" : obj.rawValue)
@@ -32,7 +33,6 @@ struct ObjectsStack: View {
 				.background(
 					Circle()
 						.fill(Color.background)
-
 				)
 				.frame(width: gameMode == .againstCPU ? 83 : 78)
 				.frame(height: gameMode == .againstCPU ? 83 : 78)
@@ -40,7 +40,7 @@ struct ObjectsStack: View {
 					Circle().fill(.white)
 				)
 				.shadow(radius: 5)
-				
+				.scaleEffect(obj.rawValue == viewsSettings.leftSideChoice ? viewsSettings.chosenObjectScale : CGSize(width: 1, height: 1))
 			}
 				
 		}
