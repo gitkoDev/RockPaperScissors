@@ -37,6 +37,7 @@ struct AgainstCPUView: View {
 					ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode)
 					
 					Spacer()
+					Spacer()
 				}
 				
 			}

@@ -18,13 +18,13 @@ struct MainView: View {
 		ZStack {
 			BackgroundColor(viewsSettings: viewsSettings)
 
-			VStack(spacing: 60) {
+			VStack(spacing: 50) {
 				HStack(alignment: .center) {
 					Spacer()
 					SettingsButton()
 				}
 				.padding(.top, 80)
-				.padding(.horizontal, 30)
+				.padding(.horizontal, 20)
 				
 				
 				Image("scissors")
@@ -53,9 +53,8 @@ struct MainView: View {
 					Text("VS Player")
 						.buttonsModifier()
 				}
-				
-				Spacer()
-				
+				.padding(.bottom)
+								
 					.fullScreenCover(isPresented: $showPlayerModal) {
 						AgainstPlayerView()
 					}

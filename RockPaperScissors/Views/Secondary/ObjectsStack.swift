@@ -32,7 +32,7 @@ struct ObjectsStack: View {
 				.padding()
 				.background(
 					Circle()
-						.fill(Color.background)
+						.fill(viewsSettings.areChoiceButtonsDisabled ? Color("Background2") : Color("Background1"))
 				)
 				.frame(width: gameMode == .againstCPU ? 83 : 78)
 				.frame(height: gameMode == .againstCPU ? 83 : 78)

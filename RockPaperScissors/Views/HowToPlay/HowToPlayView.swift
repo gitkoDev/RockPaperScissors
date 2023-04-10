@@ -35,6 +35,38 @@ struct HowToPlayView: View {
 				
 				VStack {
 					
+					ScrollView(showsIndicators: false) {
+						Image("scissors")
+							.resizable()
+							.frame(width: 80, height: 80)
+							.padding(.bottom)
+						Text("This is not the rock, paper, scissors game that everybody knows. Instead, you will be given 2 more objects to choose from, which means twice the fun!")
+							.multilineTextAlignment(.center)
+							.modifier(settingsButtonsLightModifier())
+							.lineSpacing(6)
+							.padding(.bottom)
+						
+						Image("paper")
+							.resizable()
+							.frame(width: 80, height: 80)
+							.padding(.bottom)
+						Text("Play alone or with friends in order to resolve your disputes and enjoy a fresh twist to the original game.")
+							.multilineTextAlignment(.center)
+							.modifier(settingsButtonsLightModifier())
+							.lineSpacing(6)
+						
+						Image("chart")
+							.resizable()
+							.frame(width: 340, height: 270)
+					}
+					.padding(.top, topPadding + 30)
+					.padding(.horizontal, horizontalPadding + 10)
+
+					
+//					Image("chart")
+//						.resizable()
+//						.frame(width: 350, height: 280)
+					
 					Spacer()
 					
 //					MARK: Dismiss button
@@ -42,6 +74,7 @@ struct HowToPlayView: View {
 					DismissButtonLarge()
 				}
 				.padding(.bottom, bottomPadding - 18)
+
 				
 				
 			}.ignoresSafeArea()

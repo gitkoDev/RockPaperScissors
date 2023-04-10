@@ -28,7 +28,7 @@ struct DismissButtonLarge: View {
 							.shadow(radius: 3)
 					)
 			}
-			.padding(.top, 60)
+			.padding(.top, 30)
     }
 }
 
