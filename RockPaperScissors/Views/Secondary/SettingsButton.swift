@@ -14,15 +14,11 @@ struct SettingsButton: View {
 			showSettings.toggle()
 		} label: {
 			Image(systemName: "gearshape.fill")
-				.font(.title3)
-				.foregroundColor(.gray)
-				.frame(width: 34, height: 34)
+				.font(.title2)
+				.foregroundColor(.white)
+				.frame(width: 40, height: 40)
 				.background(
-					Circle().fill(Color.drawBackground)
-				)
-				.frame(width: 42, height: 42)
-				.background(
-					Circle().fill(Color.accentPrimary)
+					Circle().fill(Color.buttonsBackground)
 						.shadow(radius: 4)
 				)
 		}

@@ -22,22 +22,17 @@ struct DismissButton: View {
 			} label: {
 					Image(systemName: "xmark")
 					.font(.title2.bold())
-					.foregroundColor(.gray)
+					.foregroundColor(.white)
 						.background(
 							ZStack {
 								Circle()
 									.fill(
 										viewsSettings.isToggleOn ?
-										Color.buttonsBackgroundAlt
+										Color.buttonsBackground
 										: Color.buttonsBackground
 									)
 							
 									.frame(width: 40, height: 40)
-
-								Circle()
-									.fill(Color.drawBackground)
-									.frame(width: 32)
-									.frame(height: 32)
 								
 							}
 								.shadow(radius: 4)

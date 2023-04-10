@@ -20,11 +20,14 @@ struct SettingsView: View {
 	var body: some View {
 		ZStack {
 			BackgroundColor(viewsSettings: viewsSettings)
+			
+//			MARK: Inner white rectangle
 			RoundedRectangle(cornerRadius: 10)
 				.fill(.white)
 				.padding(.top, topPadding)
 				.padding(.bottom, bottomPadding)
 				.padding(.horizontal, horizontalPadding)
+//			 MARK: Outer thin rim
 				.background(
 					RoundedRectangle(cornerRadius: 10)
 						.fill(Color.accentPrimary).opacity(0.5)
@@ -37,13 +40,14 @@ struct SettingsView: View {
 						Text("Settings")
 						.padding(.top, topPadding + 30)
 							.modifier(settingsTitleModifier())
-//							.background(.red)
 					
 					Image("spock")
 								 .resizable()
 								 .frame(idealWidth: 140, maxWidth: 140, idealHeight: 140, maxHeight: 140)
 
 					Spacer()
+					
+//					MARK: Top buttons
 					
 					Button {
 						print("rules opened")
@@ -69,6 +73,8 @@ struct SettingsView: View {
 					.padding(.horizontal, textHorizontalPadding)
 					
 					Spacer()
+					
+//					MARK: Referral buttons
 						
 						HStack {
 							Button("Rate the App") {
@@ -97,23 +103,9 @@ struct SettingsView: View {
 						}
 						.padding(.leading, textHorizontalPadding + 5)
 					
-					Button {
-						self.dismiss()
-						print("closed")
-					} label: {
-						Image(systemName: "xmark")
-							.foregroundColor(.drawBackground)
-							.font(.largeTitle)
-							.background(
-								RoundedRectangle(cornerRadius: 10)
-									.fill(viewsSettings.isToggleOn ?
-												Color.buttonsBackgroundAlt
-												: Color.accentPrimary)
-									.frame(width: 65, height: 65)
-									.shadow(radius: 3)
-							)
-					}
-					.padding(.top, 60)
+//					MARK: Dismiss button
+					
+					DismissButtonLarge()
 						
 					}
 				.padding(.bottom, bottomPadding - 18)
@@ -124,29 +116,7 @@ struct SettingsView: View {
     }
 }
 
-struct settingsButtonsDarkModifier: ViewModifier {
-	func body(content: Content) -> some View {
-		content
-			.font(.custom("JosefinSansRoman-Semibold", size: 22))
-			.foregroundColor(.textDarkPrimary)
-	}
-}
 
-struct settingsButtonsLightModifier: ViewModifier {
-	func body(content: Content) -> some View {
-		content
-			.font(.custom("JosefinSansRoman-Medium", size: 22))
-			.foregroundColor(.textLightPrimary)
-	}
-}
-
-struct settingsTitleModifier: ViewModifier {
-	func body(content: Content) -> some View {
-		content
-			.font(.custom("JosefinSansRoman-Bold", size: 35))
-			.foregroundColor(.blue)
-	}
-}
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {

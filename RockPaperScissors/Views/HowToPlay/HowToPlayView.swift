@@ -18,6 +18,8 @@ struct HowToPlayView: View {
     var body: some View {
 			ZStack {
 				BackgroundColor(viewsSettings: viewsSettings)
+				
+//				MARK: Inner white rectangle
 				RoundedRectangle(cornerRadius: 10)
 					.fill(.white)
 					.padding(.top, topPadding)
@@ -30,6 +32,18 @@ struct HowToPlayView: View {
 							.padding(.bottom, bottomPadding - 5)
 							.padding(.horizontal, horizontalPadding - 5)
 					)
+				
+				VStack {
+					
+					Spacer()
+					
+//					MARK: Dismiss button
+					
+					DismissButtonLarge()
+				}
+				.padding(.bottom, bottomPadding - 18)
+				
+				
 			}.ignoresSafeArea()
 			
 			

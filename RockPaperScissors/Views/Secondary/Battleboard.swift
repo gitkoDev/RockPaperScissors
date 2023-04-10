@@ -33,7 +33,7 @@ struct Battleboard: View {
 						.background(.ultraThinMaterial.opacity(1))
 						.background(viewsSettings.battleboardBG)
 						.clipShape(RoundedRectangle(cornerRadius: 10))
-					.shadow(radius: 2)
+					.shadow(radius: 5)
 			}
 			
 			if gameMode == .againstCPU {

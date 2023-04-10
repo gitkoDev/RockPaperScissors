@@ -31,9 +31,7 @@ struct ObjectsStack: View {
 				.padding()
 				.background(
 					Circle()
-						.fill(viewsSettings.isToggleOn ?
-									Color.buttonsBackgroundAlt :
-										Color.buttonsBackground)
+						.fill(Color.background)
 
 				)
 				.frame(width: gameMode == .againstCPU ? 83 : 78)

@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
 	@State private var showCPUModal = false
 	@State private var showPlayerModal = false
+	@State private var showHowToPlayModal = false
 	@ObservedObject var viewsSettings = ViewsSettings()
 	
 	var body: some View {
@@ -18,21 +19,21 @@ struct MainView: View {
 			BackgroundColor(viewsSettings: viewsSettings)
 
 			VStack(spacing: 60) {
-					HStack(alignment: .center) {
-						Spacer()
-						SettingsButton()
-					}
-					.padding(.top, 80)
-					.padding(.horizontal, 30)
+				HStack(alignment: .center) {
+					Spacer()
+					SettingsButton()
+				}
+				.padding(.top, 80)
+				.padding(.horizontal, 30)
 				
 				
-				Image("spock")
+				Image("scissors")
 					.resizable()
 					.frame(width: 140, height: 140)
 				
 				Button(action: {
 					showCPUModal.toggle()
-
+					
 				}) {
 					Text("VS CPU")
 						.buttonsModifier()
@@ -43,8 +44,8 @@ struct MainView: View {
 				
 				Button(action: {
 					showPlayerModal.toggle()
-
-//					Lock the view into landscape mode
+					
+					//					Lock the view into landscape mode
 					AppDelegate.orientationLock = UIInterfaceOrientationMask.landscape
 					UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
 					UIViewController.attemptRotationToDeviceOrientation()
@@ -55,13 +56,24 @@ struct MainView: View {
 				
 				Spacer()
 				
-				.fullScreenCover(isPresented: $showPlayerModal) {
-					AgainstPlayerView()
+					.fullScreenCover(isPresented: $showPlayerModal) {
+						AgainstPlayerView()
 					}
-
+				
+				Button {
+					showHowToPlayModal.toggle()
+				} label: {
+					Text("How to play")
+						.font(.custom("JosefinSansRoman-Medium", size: 22))
+						.foregroundColor(.white)
+				}
+				.fullScreenCover(isPresented: $showHowToPlayModal) {
+					HowToPlayView()
+				}
+				
+				Spacer()
+				
 			}
-
-
 		}
 		.ignoresSafeArea()
 
@@ -74,14 +86,14 @@ struct MenuButtons: ViewModifier {
 	
 	func body(content: Content) -> some View {
 		content
-		.foregroundColor(.white)
+			.foregroundColor(Color(red: 1, green: 1, blue: 1))
 		.padding(35)
 		.padding(.horizontal, 10)
 		.background(viewsSettings.isToggleOn ? Color.buttonsBackgroundAlt : Color.buttonsBackground)
 		.background(Rectangle().fill(.black))
 		.cornerRadius(10)
 
-		.font(.custom("JosefinSansRoman-Medium", size: 22))
+		.font(.custom("JosefinSansRoman-Bold", size: 22))
 		.padding(.all, 2.5)
 
 		.background(

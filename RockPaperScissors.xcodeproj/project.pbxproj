@@ -17,6 +17,7 @@
 		92243241299DC14200279EAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92243240299DC14200279EAA /* Preview Assets.xcassets */; };
 		922644D229B5BDA10016416A /* JosefinSans-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 922644D129B5BDA10016416A /* JosefinSans-VariableFont_wght.ttf */; };
 		922FB68029DBD00B00AC44F0 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FB67F29DBD00B00AC44F0 /* HowToPlayView.swift */; };
+		922FB68229DBD95F00AC44F0 /* DismissButtonLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FB68129DBD95F00AC44F0 /* DismissButtonLarge.swift */; };
 		92336AC829AED8F900CFA4E2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92336AC729AED8F900CFA4E2 /* Extensions.swift */; };
 		92336ACF29AEFE2700CFA4E2 /* ChoiceOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92336ACE29AEFE2700CFA4E2 /* ChoiceOptions.swift */; };
 		924223EF29ADCFFB0054A44A /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924223EE29ADCFFB0054A44A /* ToggleButton.swift */; };
@@ -43,6 +44,7 @@
 		922644CB29B5B23B0016416A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		922644D129B5BDA10016416A /* JosefinSans-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		922FB67F29DBD00B00AC44F0 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
+		922FB68129DBD95F00AC44F0 /* DismissButtonLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButtonLarge.swift; sourceTree = "<group>"; };
 		92336AC729AED8F900CFA4E2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92336ACE29AEFE2700CFA4E2 /* ChoiceOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceOptions.swift; sourceTree = "<group>"; };
 		924223EE29ADCFFB0054A44A /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				924223EE29ADCFFB0054A44A /* ToggleButton.swift */,
 				92E9DA4F29B6C472000A420D /* DismissButton.swift */,
+				922FB68129DBD95F00AC44F0 /* DismissButtonLarge.swift */,
 				9283A10629BEBCC800B6C393 /* BackgroundColor.swift */,
 				921E5E5529C7FE6E00CA3E78 /* ObjectsStack.swift */,
 				921E5E5729C802C100CA3E78 /* Battleboard.swift */,
@@ -270,6 +273,7 @@
 			files = (
 				9224323C299DC14200279EAA /* AgainstCPUView.swift in Sources */,
 				9283A10329BEB89100B6C393 /* ViewsSettings.swift in Sources */,
+				922FB68229DBD95F00AC44F0 /* DismissButtonLarge.swift in Sources */,
 				924223EF29ADCFFB0054A44A /* ToggleButton.swift in Sources */,
 				92FA69BB29C9525F00C3F3BB /* AppDelegate.swift in Sources */,
 				921E5E5829C802C100CA3E78 /* Battleboard.swift in Sources */,

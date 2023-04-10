@@ -15,7 +15,7 @@ struct BackgroundColor: View {
 					Image("grid")
 					.resizable(resizingMode: .tile)
 			} else {
-				Color.backgroundAlt
+				Color.background
 			}
 				
     }
