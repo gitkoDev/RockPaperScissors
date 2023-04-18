@@ -8,9 +8,9 @@
 import SwiftUI
 import WrappingStack
 
-struct AgainstPlayerView: View {
+struct MultiplayerView: View {
 	@StateObject var viewsSettings = ViewsSettings()
-	@State private var gameMode: ViewsSettings.GameModes = .againstPlayer
+	@State private var gameMode: ViewsSettings.GameModes = .multiplayer
 
     var body: some View {
 			ZStack {
@@ -56,6 +56,6 @@ struct AgainstPlayerView: View {
 
 struct AgainstPlayerView_Previews: PreviewProvider {
     static var previews: some View {
-			AgainstPlayerView()
+			MultiplayerView()
     }
 }

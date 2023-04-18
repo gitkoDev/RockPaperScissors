@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9208547F29AC4F0200777BA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208547E29AC4F0200777BA5 /* MainView.swift */; };
-		9208548329AC550F00777BA5 /* AgainstPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208548229AC550F00777BA5 /* AgainstPlayerView.swift */; };
+		9208548329AC550F00777BA5 /* MultiplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208548229AC550F00777BA5 /* MultiplayerView.swift */; };
 		921E5E5629C7FE6E00CA3E78 /* ObjectsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E5E5529C7FE6E00CA3E78 /* ObjectsStack.swift */; };
 		921E5E5829C802C100CA3E78 /* Battleboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E5E5729C802C100CA3E78 /* Battleboard.swift */; };
 		9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92243239299DC14200279EAA /* RockPaperScissorsApp.swift */; };
-		9224323C299DC14200279EAA /* AgainstCPUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224323B299DC14200279EAA /* AgainstCPUView.swift */; };
+		9224323C299DC14200279EAA /* SingleplayerView..swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224323B299DC14200279EAA /* SingleplayerView..swift */; };
 		9224323E299DC14200279EAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9224323D299DC14200279EAA /* Assets.xcassets */; };
 		92243241299DC14200279EAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92243240299DC14200279EAA /* Preview Assets.xcassets */; };
 		922644D229B5BDA10016416A /* JosefinSans-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 922644D129B5BDA10016416A /* JosefinSans-VariableFont_wght.ttf */; };
@@ -33,12 +33,12 @@
 
 /* Begin PBXFileReference section */
 		9208547E29AC4F0200777BA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		9208548229AC550F00777BA5 /* AgainstPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainstPlayerView.swift; sourceTree = "<group>"; };
+		9208548229AC550F00777BA5 /* MultiplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerView.swift; sourceTree = "<group>"; };
 		921E5E5529C7FE6E00CA3E78 /* ObjectsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsStack.swift; sourceTree = "<group>"; };
 		921E5E5729C802C100CA3E78 /* Battleboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battleboard.swift; sourceTree = "<group>"; };
 		92243236299DC14100279EAA /* RockPaperScissors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RockPaperScissors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92243239299DC14200279EAA /* RockPaperScissorsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockPaperScissorsApp.swift; sourceTree = "<group>"; };
-		9224323B299DC14200279EAA /* AgainstCPUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainstCPUView.swift; sourceTree = "<group>"; };
+		9224323B299DC14200279EAA /* SingleplayerView..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleplayerView..swift; sourceTree = "<group>"; };
 		9224323D299DC14200279EAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92243240299DC14200279EAA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		922644CB29B5B23B0016416A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -127,8 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				92A9D15229B06AF400CDE9A5 /* Main */,
-				92E9DA5229B6E096000A420D /* AgainstPlayer */,
-				92E9DA5129B6E07E000A420D /* AgainstCPU */,
+				92E9DA5229B6E096000A420D /* Multiplayer */,
+				92E9DA5129B6E07E000A420D /* Singleplayer */,
 				92C4AD7229D3CA470038DE01 /* Settings */,
 				922FB67E29DBCFE400AC44F0 /* HowToPlay */,
 				92A9D15429B06B0600CDE9A5 /* Secondary */,
@@ -178,20 +178,20 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		92E9DA5129B6E07E000A420D /* AgainstCPU */ = {
+		92E9DA5129B6E07E000A420D /* Singleplayer */ = {
 			isa = PBXGroup;
 			children = (
-				9224323B299DC14200279EAA /* AgainstCPUView.swift */,
+				9224323B299DC14200279EAA /* SingleplayerView..swift */,
 			);
-			path = AgainstCPU;
+			path = Singleplayer;
 			sourceTree = "<group>";
 		};
-		92E9DA5229B6E096000A420D /* AgainstPlayer */ = {
+		92E9DA5229B6E096000A420D /* Multiplayer */ = {
 			isa = PBXGroup;
 			children = (
-				9208548229AC550F00777BA5 /* AgainstPlayerView.swift */,
+				9208548229AC550F00777BA5 /* MultiplayerView.swift */,
 			);
-			path = AgainstPlayer;
+			path = Multiplayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9224323C299DC14200279EAA /* AgainstCPUView.swift in Sources */,
+				9224323C299DC14200279EAA /* SingleplayerView..swift in Sources */,
 				9283A10329BEB89100B6C393 /* ViewsSettings.swift in Sources */,
 				922FB68229DBD95F00AC44F0 /* DismissButtonLarge.swift in Sources */,
 				924223EF29ADCFFB0054A44A /* ToggleButton.swift in Sources */,
@@ -286,7 +286,7 @@
 				9224323A299DC14200279EAA /* RockPaperScissorsApp.swift in Sources */,
 				9283A10729BEBCC800B6C393 /* BackgroundColor.swift in Sources */,
 				92336ACF29AEFE2700CFA4E2 /* ChoiceOptions.swift in Sources */,
-				9208548329AC550F00777BA5 /* AgainstPlayerView.swift in Sources */,
+				9208548329AC550F00777BA5 /* MultiplayerView.swift in Sources */,
 				92E9DA5029B6C472000A420D /* DismissButton.swift in Sources */,
 				92336AC829AED8F900CFA4E2 /* Extensions.swift in Sources */,
 			);

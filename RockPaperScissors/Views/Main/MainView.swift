@@ -39,7 +39,7 @@ struct MainView: View {
 						.buttonsModifier()
 				}
 				.fullScreenCover(isPresented: $showCPUModal) {
-					AgainstCPUView()
+					SingleplayerView()
 				}
 				
 				Button(action: {
@@ -56,7 +56,7 @@ struct MainView: View {
 				.padding(.bottom)
 								
 					.fullScreenCover(isPresented: $showPlayerModal) {
-						AgainstPlayerView()
+						MultiplayerView()
 					}
 				
 				Spacer().frame(height: 40)

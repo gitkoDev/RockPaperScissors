@@ -15,13 +15,13 @@ struct ObjectsStack: View {
 	var playerSide: Binding<ViewsSettings.PlayerSides>?
 	
 	var body: some View {
-		if gameMode == .againstCPU {
+		if gameMode == .singleplayer {
 			WrappingHStack(
 				id: \.self, alignment: .center,
 				horizontalSpacing: 30, verticalSpacing: 15) {
 				ForEach(ChoiceOptions.allCases, id: \.self) { obj in
 					Button {
-							viewsSettings.chooseAnObjectAgainstCPUMode(leftObj: obj, rightObj: ChoiceOptions.allCases.randomElement()!)
+							viewsSettings.chooseAnObjectSingleplayer(leftObj: obj, rightObj: ChoiceOptions.allCases.randomElement()!)
 					} label: {
 	// Change the buttons styling depending on whether the toggle is on
 						Image(viewsSettings.isToggleOn ? obj.rawValue + "Alt" : obj.rawValue)
@@ -52,7 +52,7 @@ struct ObjectsStack: View {
 				horizontalSpacing: 10, verticalSpacing: 15) {
 				ForEach(ChoiceOptions.allCases, id: \.self) { obj in
 					Button {
-						viewsSettings.chooseObjectsAgainstPlayerMode(playerSide: playerSide!.wrappedValue, chosenObject: obj)
+						viewsSettings.chooseObjectsMultiplayer(playerSide: playerSide!.wrappedValue, chosenObject: obj)
 						print(playerSide!.wrappedValue)
 					} label: {
 	// Change the buttons styling depending on whether the toggle is on
@@ -92,6 +92,6 @@ struct ObjectsStack: View {
 
 struct ObjectsStack_Previews: PreviewProvider {
     static var previews: some View {
-			ObjectsStack(viewsSettings: ViewsSettings(), gameMode: .constant(.againstPlayer))
+			ObjectsStack(viewsSettings: ViewsSettings(), gameMode: .constant(.multiplayer))
     }
 }

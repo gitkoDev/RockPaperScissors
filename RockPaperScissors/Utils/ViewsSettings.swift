@@ -9,8 +9,8 @@ import SwiftUI
 
 class ViewsSettings: ObservableObject {
 	enum GameModes: String {
-		case againstCPU 
-		case againstPlayer
+		case singleplayer
+		case multiplayer
 	}
 	
 	enum PlayerSides {
@@ -28,7 +28,7 @@ class ViewsSettings: ObservableObject {
 	@Published var userScore = 0
 
 	@Published var areChoiceButtonsDisabled = false
-
+	
 	@Published var battleboardBG: Color = .white.opacity(0)
 	@Published var leftObjectOffset: CGFloat = -120
 	@Published var rightObjectOffset: CGFloat = 120
@@ -36,12 +36,12 @@ class ViewsSettings: ObservableObject {
 	@Published var buttonsShadow: CGFloat = 5
 	@Published var chosenObjectScale: CGSize = CGSize(width: 1, height: 1)
 	
-	@Published var againstPlayerTimerSecondsLeft: Int = 3
-	static var againstPlayerTimerSecondsLeftStatic = 3
+	@Published var multiplayerTimerSecondsLeft: Int = 3
+	static var multiplayerTimerSecondsLeftStatic = 3
 	
 	let animationTimerDelay: Double = 2
 
-	func chooseAnObjectAgainstCPUMode(leftObj: ChoiceOptions, rightObj: ChoiceOptions) {
+	func chooseAnObjectSingleplayer(leftObj: ChoiceOptions, rightObj: ChoiceOptions) {
 //		Change battleboard images style if the toggle has been switched
 		if !isToggleOn {
 			leftSideChoice = leftObj.rawValue
@@ -96,7 +96,7 @@ class ViewsSettings: ObservableObject {
 		}
 	}
 	
-	func chooseObjectsAgainstPlayerMode(playerSide: PlayerSides, chosenObject: ChoiceOptions) {
+	func chooseObjectsMultiplayer(playerSide: PlayerSides, chosenObject: ChoiceOptions) {
 		//		Change battleboard images style if the toggle has been switched
 		if !isToggleOn {
 			if playerSide == .left {

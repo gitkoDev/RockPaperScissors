@@ -19,10 +19,9 @@ struct Battleboard: View {
 	@State private var timer: Timer?
 	@State private var secondsLeft = 3
 	
-	
     var body: some View {
 //			MARK: againstCPU view design
-			if gameMode == .againstCPU {
+			if gameMode == .singleplayer {
 				VStack {
 					HStack(alignment: .bottom) {
 								Image(viewsSettings.leftSideChoice)
@@ -57,7 +56,7 @@ struct Battleboard: View {
 			}
 			
 //			MARK: againstPlayer view design
-			if gameMode == .againstPlayer {
+			if gameMode == .multiplayer {
 							ZStack {
 								VStack {
 									HStack(alignment: .bottom) {
@@ -75,8 +74,8 @@ struct Battleboard: View {
 													.offset(x: viewsSettings.rightObjectOffset)
 													.offset(y: -20)
 											}
-											.frame(width: gameMode == .againstPlayer ? 350 : 350)
-											.frame(height: gameMode == .againstPlayer ? 250 : 220)
+											.frame(width: gameMode == .multiplayer ? 350 : 350)
+											.frame(height: gameMode == .multiplayer ? 250 : 220)
 											.background(.ultraThinMaterial.opacity(1))
 											.background(viewsSettings.battleboardBG)
 											.clipShape(RoundedRectangle(cornerRadius: 10))
@@ -84,29 +83,27 @@ struct Battleboard: View {
 								}
 	
 //	MARK: Timer for againstPlayer view
-								if gameMode == .againstPlayer {
+								if gameMode == .multiplayer {
 
 									if !timerStarted {
 										Button {
 											self.timerStarted = true
 											viewsSettings.areChoiceButtonsDisabled = true
 											
-											print(viewsSettings.leftSideChoice, viewsSettings.rightSideChoice)
-											
+//											We need a published AND a static property (published one get the view updated, static one gets updated in the superclass so that we can observe the timer and invoke other methods when the time comes
 											timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-												viewsSettings.againstPlayerTimerSecondsLeft -= 1
-												ViewsSettings.againstPlayerTimerSecondsLeftStatic -= 1
+												viewsSettings.multiplayerTimerSecondsLeft -= 1
+												ViewsSettings.multiplayerTimerSecondsLeftStatic -= 1
 												
 //												The buttons become active when the timer is at 0 and then become disabled after some time elapses
-												
-												if viewsSettings.againstPlayerTimerSecondsLeft == 0 {
+												if viewsSettings.multiplayerTimerSecondsLeft == 0 {
 													viewsSettings.areChoiceButtonsDisabled = false
 												}
 												
-												if viewsSettings.againstPlayerTimerSecondsLeft <= -2 {
+												if viewsSettings.multiplayerTimerSecondsLeft <= -2 {
 													timer?.invalidate()
 													viewsSettings.areChoiceButtonsDisabled = true
-													viewsSettings.againstPlayerTimerSecondsLeft = 3
+													viewsSettings.multiplayerTimerSecondsLeft = 3
 													timerStarted = false
 												}
 												
@@ -115,12 +112,12 @@ struct Battleboard: View {
 											Text("Start timer")
 												.buttonsModifier()
 										}
-									} else if timerStarted && viewsSettings.againstPlayerTimerSecondsLeft <= 0 && viewsSettings.againstPlayerTimerSecondsLeft >= -2 {
+									} else if timerStarted && viewsSettings.multiplayerTimerSecondsLeft <= 0 && viewsSettings.multiplayerTimerSecondsLeft >= -2 {
 											Text("Go!")
 												.modifier(settingsTitleModifier())
 									}
 									else {
-										Text("\(viewsSettings.againstPlayerTimerSecondsLeft)")
+										Text("\(viewsSettings.multiplayerTimerSecondsLeft)")
 											.modifier(settingsTitleModifier())
 									}
 							}
@@ -132,6 +129,6 @@ struct Battleboard: View {
 
 struct Battleboard_Previews: PreviewProvider {
     static var previews: some View {
-			Battleboard(viewsSettings: ViewsSettings(), gameMode: .constant(ViewsSettings.GameModes.againstPlayer))
+			Battleboard(viewsSettings: ViewsSettings(), gameMode: .constant(ViewsSettings.GameModes.multiplayer))
     }
 }
