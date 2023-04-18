@@ -38,11 +38,11 @@ struct AgainstPlayerView: View {
 					Spacer()
 					
 					HStack {
-						ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode)
+						ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode, playerSide: .constant(.left))
 						
-						Battleboard(viewsSettings: ViewsSettings(), gameMode: $gameMode)
+						Battleboard(viewsSettings: viewsSettings, gameMode: $gameMode)
 						
-						ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode)
+						ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode, playerSide: .constant(.right))
 					}
 					.padding(.horizontal, 50)
 

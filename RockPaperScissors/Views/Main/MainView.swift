@@ -29,7 +29,7 @@ struct MainView: View {
 				
 				Image("scissors")
 					.resizable()
-					.frame(width: 140, height: 140)
+					.frame(width: 155, height: 155)
 				
 				Button(action: {
 					showCPUModal.toggle()
@@ -58,6 +58,8 @@ struct MainView: View {
 					.fullScreenCover(isPresented: $showPlayerModal) {
 						AgainstPlayerView()
 					}
+				
+				Spacer().frame(height: 40)
 				
 				Button {
 					showHowToPlayModal.toggle()

@@ -12,6 +12,8 @@ struct SettingsView: View {
 	@ObservedObject var viewsSettings = ViewsSettings()
 	@Environment(\.dismiss) var dismiss
 	
+	@State private var showHowToPlayModal: Bool = false
+	
 	private let topPadding: CGFloat = 80
 	private let bottomPadding: CGFloat = 70
 	private let horizontalPadding: CGFloat = 15
@@ -50,7 +52,7 @@ struct SettingsView: View {
 //					MARK: Top buttons
 					
 					Button {
-						print("rules opened")
+						showHowToPlayModal.toggle()
 					} label: {
 						HStack {
 							Text("How to play")
@@ -62,6 +64,9 @@ struct SettingsView: View {
 							
 						}
 						.padding(.horizontal, textHorizontalPadding)
+						.fullScreenCover(isPresented: $showHowToPlayModal) {
+							HowToPlayView()
+						}
 					}
 
 					HStack {

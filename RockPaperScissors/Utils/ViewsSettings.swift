@@ -9,8 +9,13 @@ import SwiftUI
 
 class ViewsSettings: ObservableObject {
 	enum GameModes: String {
-		case againstCPU = "CPU"
-		case againstPlayer = "Player"
+		case againstCPU 
+		case againstPlayer
+	}
+	
+	enum PlayerSides {
+		case left
+		case right
 	}
 	
 	@AppStorage("isToggleOn") var isToggleOn: Bool = false
@@ -28,66 +33,103 @@ class ViewsSettings: ObservableObject {
 	@Published var leftObjectOffset: CGFloat = -120
 	@Published var rightObjectOffset: CGFloat = 120
 	@Published var scoreBounceOffset: CGFloat = 0
-	
+	@Published var buttonsShadow: CGFloat = 5
 	@Published var chosenObjectScale: CGSize = CGSize(width: 1, height: 1)
 	
-	let timerDelay: Double = 2
+	@Published var againstPlayerTimerSecondsLeft: Int = 3
+	static var againstPlayerTimerSecondsLeftStatic = 3
+	
+	let animationTimerDelay: Double = 2
 
-	func chooseAnObject(userObj: ChoiceOptions, computerObj: ChoiceOptions) {
+	func chooseAnObjectAgainstCPUMode(leftObj: ChoiceOptions, rightObj: ChoiceOptions) {
 //		Change battleboard images style if the toggle has been switched
 		if !isToggleOn {
-			leftSideChoice = userObj.rawValue
-			rightSideChoice = computerObj.rawValue
+			leftSideChoice = leftObj.rawValue
+			rightSideChoice = rightObj.rawValue
 		} else {
-			leftSideChoice = userObj.rawValue + "Alt"
-			rightSideChoice = computerObj.rawValue + "Alt"
+			leftSideChoice = leftObj.rawValue + "Alt"
+			rightSideChoice = rightObj.rawValue + "Alt"
 		}
 	
 
-		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
+		areChoiceButtonsDisabled = true
+
+		if leftObj == rightObj {
+			finishedInADraw()
+		} else if leftObj == .Rock {
+			if rightObj == .Lizard || rightObj == .Scissors {
+				userWins()
+			} else {
+				computerWins()
+			}
+		} else if leftObj == .Paper {
+			if rightObj == .Paper || rightObj == .Spock {
+				userWins()
+			} else {
+				computerWins()
+			}
+		} else if leftObj == .Scissors {
+			if rightObj == .Paper || rightObj == .Lizard {
+				userWins()
+			} else {
+				computerWins()
+			}
+		} else if leftObj == .Lizard {
+			if rightObj == .Spock || rightObj == .Paper {
+				userWins()
+			} else {
+				computerWins()
+			}
+		} else if leftObj == .Spock {
+			if rightObj == .Scissors || rightObj == .Rock {
+				userWins()
+			} else {
+				computerWins()
+			}
+		}
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationTimerDelay) {
+			self.leftSideChoice = ""
+			self.rightSideChoice = ""
+			
 			self.areChoiceButtonsDisabled = false
 		}
-		areChoiceButtonsDisabled = true
-		
-
-		if userObj == computerObj {
-			finishedInADraw()
-		} else if userObj == .Rock {
-			if computerObj == .Lizard || computerObj == .Scissors {
-				userWins()
+	}
+	
+	func chooseObjectsAgainstPlayerMode(playerSide: PlayerSides, chosenObject: ChoiceOptions) {
+		//		Change battleboard images style if the toggle has been switched
+		if !isToggleOn {
+			if playerSide == .left {
+				leftSideChoice = chosenObject.rawValue
 			} else {
-				computerWins()
+				rightSideChoice = chosenObject.rawValue
 			}
-		} else if userObj == .Paper {
-			if computerObj == .Paper || computerObj == .Spock {
-				userWins()
+		} else {
+			if playerSide == .left {
+				leftSideChoice = chosenObject.rawValue + "Alt"
 			} else {
-				computerWins()
-			}
-		} else if userObj == .Scissors {
-			if computerObj == .Paper || computerObj == .Lizard {
-				userWins()
-			} else {
-				computerWins()
-			}
-		} else if userObj == .Lizard {
-			if computerObj == .Spock || computerObj == .Paper {
-				userWins()
-			} else {
-				computerWins()
-			}
-		} else if userObj == .Spock {
-			if computerObj == .Scissors || computerObj == .Rock {
-				userWins()
-			} else {
-				computerWins()
+				rightSideChoice = chosenObject.rawValue + "Alt"
 			}
 		}
-
-		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationTimerDelay) {
 			self.leftSideChoice = ""
 			self.rightSideChoice = ""
 		}
+		
+		animateRound()
+	}
+	
+	func leftPlayerChooseAnObject() {
+//		animateRound()
+	}
+	
+	func rightPlayerChooseAnObject() {
+		print("right chosen")
+	}
+	
+	func playerChoseTooEarly() {
+		print("too early!")
 	}
 
 	func userWins() {
@@ -111,7 +153,7 @@ class ViewsSettings: ObservableObject {
 		battleboardAnimation(outcome: outcome)
 		scoreAnimation()
 
-		DispatchQueue.main.asyncAfter(deadline: .now() + timerDelay) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationTimerDelay) {
 			self.outcome = .NotStarted
 			self.battleboardAnimation(outcome: self.outcome)
 			self.leftObjectOffset = -130
@@ -119,6 +161,7 @@ class ViewsSettings: ObservableObject {
 			
 			withAnimation(.easeOut(duration: 0.2)) {
 				self.chosenObjectScale = CGSize(width: 1, height: 1)
+				self.buttonsShadow = 4
 			}
 		}
 	}
@@ -126,6 +169,7 @@ class ViewsSettings: ObservableObject {
 	func battleboardAnimation(outcome: RoundOutcomes) {
 		withAnimation(.easeIn(duration: 0.2)) {
 			chosenObjectScale = CGSize(width: 0.85, height: 0.85)
+			self.buttonsShadow = 0
 		}
 		
 		withAnimation(.easeOut(duration: 1)) {
@@ -133,16 +177,12 @@ class ViewsSettings: ObservableObject {
 			switch outcome {
 			case .LeftSideWins:
 				battleboardBG = .victoryBackround
-				print(leftObjectOffset)
 			case .RightSideWins:
 				battleboardBG = .defeatBackground
-				print("you lose")
 			case .Draw:
 				battleboardBG = .drawBackground
-				print("battleboardBG")
 			default:
 				battleboardBG = .white.opacity(0)
-				print("default")
 			}
 			
 			leftObjectOffset = 0

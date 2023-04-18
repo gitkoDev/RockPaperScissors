@@ -57,7 +57,7 @@ struct HowToPlayView: View {
 						
 						Image("chart")
 							.resizable()
-							.frame(width: 340, height: 270)
+							.frame(width: 340, height: 250)
 					}
 					.padding(.top, topPadding + 30)
 					.padding(.horizontal, horizontalPadding + 10)
