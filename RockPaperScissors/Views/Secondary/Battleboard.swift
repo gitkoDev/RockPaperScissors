@@ -88,7 +88,6 @@ struct Battleboard: View {
 									if !timerStarted {
 										Button {
 											self.timerStarted = true
-											viewsSettings.areChoiceButtonsDisabled = true
 											
 //											We need a published AND a static property (published one get the view updated, static one gets updated in the superclass so that we can observe the timer and invoke other methods when the time comes
 											timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
@@ -97,14 +96,19 @@ struct Battleboard: View {
 												
 //												The buttons become active when the timer is at 0 and then become disabled after some time elapses
 												if viewsSettings.multiplayerTimerSecondsLeft == 0 {
-													viewsSettings.areChoiceButtonsDisabled = false
+													viewsSettings.areLeftChoiceButtonsDisabledMultiplayer = false
+													viewsSettings.areRightChoiceButtonsDisabledMultiplayer = false
+													viewsSettings.areAllChoiceButtonsDisabledMultiplayer = false
 												}
 												
-												if viewsSettings.multiplayerTimerSecondsLeft <= -2 {
+												if viewsSettings.multiplayerTimerSecondsLeft <= -3 {
 													timer?.invalidate()
-													viewsSettings.areChoiceButtonsDisabled = true
+													viewsSettings.areLeftChoiceButtonsDisabledMultiplayer = true
+													viewsSettings.areRightChoiceButtonsDisabledMultiplayer = true
+													viewsSettings.areAllChoiceButtonsDisabledMultiplayer = true
 													viewsSettings.multiplayerTimerSecondsLeft = 3
 													timerStarted = false
+													viewsSettings.decideOutcome()
 												}
 												
 											})
@@ -112,9 +116,10 @@ struct Battleboard: View {
 											Text("Start timer")
 												.buttonsModifier()
 										}
-									} else if timerStarted && viewsSettings.multiplayerTimerSecondsLeft <= 0 && viewsSettings.multiplayerTimerSecondsLeft >= -2 {
+									} else if timerStarted && viewsSettings.multiplayerTimerSecondsLeft <= 0 && viewsSettings.multiplayerTimerSecondsLeft >= -3 {
 											Text("Go!")
 												.modifier(settingsTitleModifier())
+												.opacity(viewsSettings.multiplayerTimerSecondsLeft < 0 ? 0 : 1)
 									}
 									else {
 										Text("\(viewsSettings.multiplayerTimerSecondsLeft)")

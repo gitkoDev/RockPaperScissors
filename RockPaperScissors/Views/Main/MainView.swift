@@ -31,6 +31,8 @@ struct MainView: View {
 					.resizable()
 					.frame(width: 155, height: 155)
 				
+//				MARK: Game mode buttons
+				
 				Button(action: {
 					showCPUModal.toggle()
 					
@@ -60,7 +62,9 @@ struct MainView: View {
 					}
 				
 				Spacer().frame(height: 40)
+	
 				
+//				MARK: How to play button
 				Button {
 					showHowToPlayModal.toggle()
 				} label: {

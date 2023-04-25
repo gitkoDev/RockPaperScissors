@@ -62,11 +62,6 @@ struct HowToPlayView: View {
 					.padding(.top, topPadding + 30)
 					.padding(.horizontal, horizontalPadding + 10)
 
-					
-//					Image("chart")
-//						.resizable()
-//						.frame(width: 350, height: 280)
-					
 					Spacer()
 					
 //					MARK: Dismiss button
