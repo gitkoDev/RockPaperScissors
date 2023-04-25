@@ -26,10 +26,13 @@ struct MainView: View {
 				.padding(.top, 80)
 				.padding(.horizontal, 20)
 				
-				
-				Image("scissors")
-					.resizable()
-					.frame(width: 155, height: 155)
+				GeometryReader { geo in
+					Image("scissors")
+						.resizable()
+						.scaledToFit()
+						.frame(width: geo.size.width * 0.5)
+						.frame(width: geo.size.width)
+				}
 				
 //				MARK: Game mode buttons
 				
@@ -61,7 +64,7 @@ struct MainView: View {
 						MultiplayerView()
 					}
 				
-				Spacer().frame(height: 40)
+				Spacer()
 	
 				
 //				MARK: How to play button

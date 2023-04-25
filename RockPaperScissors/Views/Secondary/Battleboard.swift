@@ -64,7 +64,6 @@ struct Battleboard: View {
 													.resizable()
 													.frame(width: 80, height: 80)
 													.offset(x: viewsSettings.leftObjectOffset)
-													.offset(y: -20)
 												Spacer().frame(width: 100)
 				
 				
@@ -72,7 +71,6 @@ struct Battleboard: View {
 													.resizable()
 													.frame(width: 80, height: 80)
 													.offset(x: viewsSettings.rightObjectOffset)
-													.offset(y: -20)
 											}
 											.frame(width: gameMode == .multiplayer ? 350 : 350)
 											.frame(height: gameMode == .multiplayer ? 250 : 220)
