@@ -41,7 +41,7 @@ struct ObjectsStack: View {
 
 	//				Animate the button that was tapped just now (e.g. if it's the choice of the player, then it's the button that was tapped and it needs to be animated
 					.shadow(radius: obj.rawValue == viewsSettings.leftSideChoice ? viewsSettings.buttonsShadow : 4)
-					.scaleEffect(obj.rawValue == viewsSettings.leftSideChoice ? viewsSettings.chosenObjectScale : CGSize(width: 1, height: 1))
+					.scaleEffect(obj.rawValue == viewsSettings.leftSideChoice ? viewsSettings.chosenObjectScaleSingleplayer : CGSize(width: 1, height: 1))
 				}
 					
 			}
@@ -76,13 +76,13 @@ struct ObjectsStack: View {
 					
 //					Left side animation
 					.shadow(radius: playerSide!.wrappedValue == .left && obj.rawValue == viewsSettings.leftSideChoice ? viewsSettings.buttonsShadow : 4)
-					.scaleEffect(playerSide!.wrappedValue == .left && obj.rawValue == viewsSettings.leftSideChoice ? viewsSettings.chosenObjectScale : CGSize(width: 1, height: 1))
+					.scaleEffect(playerSide!.wrappedValue == .left && obj.rawValue == viewsSettings.leftSideChoice ? viewsSettings.leftChosenObjectScaleMultiplayer : CGSize(width: 1, height: 1))
 //					.scaleEffect(viewsSettings.areAllChoiceButtonsDisabledMultiplayer ? CGSize(width: 0.85, height: 0.85) : CGSize(width: 1, height: 1))
 					
 					
 //					Right side animation
 					.shadow(radius: playerSide!.wrappedValue == .right && obj.rawValue == viewsSettings.rightSideChoice ? viewsSettings.buttonsShadow : 4)
-					.scaleEffect(playerSide!.wrappedValue == .right && obj.rawValue == viewsSettings.rightSideChoice ? viewsSettings.chosenObjectScale : CGSize(width: 1, height: 1))
+					.scaleEffect(playerSide!.wrappedValue == .right && obj.rawValue == viewsSettings.rightSideChoice ? viewsSettings.rightChosenObjectScaleMultiplayer : CGSize(width: 1, height: 1))
 					
 //					.scaleEffect(viewsSettings.areLeftChoiceButtonsDisabledMultiplayer ? CGSize(width: 0.85, height: 0.85) : CGSize(width: 1, height: 1))
 				}

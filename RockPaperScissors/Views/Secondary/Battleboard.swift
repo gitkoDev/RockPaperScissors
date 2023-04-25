@@ -101,6 +101,14 @@ struct Battleboard: View {
 													viewsSettings.areAllChoiceButtonsDisabledMultiplayer = false
 												}
 												
+//												One second before the timer ends the buttons get disabled to prevent last second choice and the image animating behind the timer
+												
+												if viewsSettings.multiplayerTimerSecondsLeft <= -2 {
+													viewsSettings.areLeftChoiceButtonsDisabledMultiplayer = true
+													viewsSettings.areRightChoiceButtonsDisabledMultiplayer = true
+													viewsSettings.areAllChoiceButtonsDisabledMultiplayer = true
+												}
+												
 												if viewsSettings.multiplayerTimerSecondsLeft <= -3 {
 													timer?.invalidate()
 													viewsSettings.areLeftChoiceButtonsDisabledMultiplayer = true
@@ -108,7 +116,7 @@ struct Battleboard: View {
 													viewsSettings.areAllChoiceButtonsDisabledMultiplayer = true
 													viewsSettings.multiplayerTimerSecondsLeft = 3
 													timerStarted = false
-													viewsSettings.decideOutcome()
+//													viewsSettings.decideOutcomeMultiplayer()
 												}
 												
 											})
@@ -119,6 +127,7 @@ struct Battleboard: View {
 									} else if timerStarted && viewsSettings.multiplayerTimerSecondsLeft <= 0 && viewsSettings.multiplayerTimerSecondsLeft >= -3 {
 											Text("Go!")
 												.modifier(settingsTitleModifier())
+												.offset(y: -70)
 												.opacity(viewsSettings.multiplayerTimerSecondsLeft < 0 ? 0 : 1)
 									}
 									else {

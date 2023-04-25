@@ -21,7 +21,7 @@ struct MultiplayerView: View {
 					HStack {
 						Spacer()
 						
-						Text("\(viewsSettings.leftSideScore) : \(viewsSettings.righSideScore)")
+						Text("\(viewsSettings.leftSideScoreMultiplayer) : \(viewsSettings.rightSideScoreMultiplayer)")
 				.font(.custom("JosefinSansRoman-Light", size: 35).weight(.medium))
 								.foregroundColor(.white)
 								.padding()
