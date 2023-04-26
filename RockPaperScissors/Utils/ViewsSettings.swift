@@ -8,6 +8,8 @@
 import SwiftUI
 
 class ViewsSettings: ObservableObject {
+	@AppStorage("isToggleOn") var isToggleOn: Bool = false
+	
 	enum GameModes: String {
 		case singleplayer
 		case multiplayer
@@ -17,8 +19,6 @@ class ViewsSettings: ObservableObject {
 		case left
 		case right
 	}
-	
-	@AppStorage("isToggleOn") var isToggleOn: Bool = false
 	
 //	MARK: Singleplayer specific properties
 	@Published var userScore = 0
@@ -57,7 +57,7 @@ class ViewsSettings: ObservableObject {
 			}
 		}
 	}
-	
+
 	@Published var areAllChoiceButtonsDisabledMultiplayer = true
 	
 	@Published var leftChosenObjectScaleMultiplayer: CGSize = CGSize(width: 1, height: 1)

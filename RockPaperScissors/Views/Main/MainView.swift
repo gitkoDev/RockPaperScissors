@@ -72,7 +72,7 @@ struct MainView: View {
 					showHowToPlayModal.toggle()
 				} label: {
 					Text("How to play")
-						.font(.custom("JosefinSansRoman-Medium", size: 22))
+						.font(.custom("JosefinSansRoman-Medium", size: 19))
 						.foregroundColor(.white)
 				}
 				.fullScreenCover(isPresented: $showHowToPlayModal) {

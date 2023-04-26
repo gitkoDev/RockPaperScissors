@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "chart@1x.png",
+      "filename" : "crossedOutRPS@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "chart@2x.png",
+      "filename" : "crossedOutRPS@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "chart@3x.png",
+      "filename" : "crossedOutRPS@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -36,28 +36,36 @@ struct HowToPlayView: View {
 				VStack {
 					
 					ScrollView(showsIndicators: false) {
-						Image("scissors")
-							.resizable()
-							.frame(width: 80, height: 80)
-							.padding(.bottom)
-						Text("This is not the rock, paper, scissors game that everybody knows. Instead, you will be given 2 more objects to choose from, which means twice the fun!")
-							.multilineTextAlignment(.center)
-							.modifier(settingsButtonsLightModifier())
-							.lineSpacing(6)
-							.padding(.bottom)
+						Group {
+							Image("crossedOutRPS")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 200)
+							Text("This is not the rock, paper, scissors game that everybody knows. Instead, you will be given 2 more objects to choose from, which means twice the fun!")
+								.multilineTextAlignment(.center)
+								.modifier(settingsButtonsLightModifier())
+								.lineSpacing(6)
+						}
+						.padding(.bottom)
 						
-						Image("paper")
-							.resizable()
-							.frame(width: 80, height: 80)
-							.padding(.bottom)
-						Text("Play alone or with friends in order to resolve your disputes and enjoy a fresh twist to the original game.")
-							.multilineTextAlignment(.center)
-							.modifier(settingsButtonsLightModifier())
-							.lineSpacing(6)
+						Group {
+							Image("allObjects")
+								.resizable()
+								.scaledToFit()
+								.padding(.horizontal, 15)
+							Text("Play alone or with friends in order to resolve your disputes and enjoy a fresh twist to the original game.")
+								.multilineTextAlignment(.center)
+								.modifier(settingsButtonsLightModifier())
+								.lineSpacing(6)
+						}
+						.padding(.bottom)
 						
-						Image("chart")
-							.resizable()
-							.frame(width: 340, height: 250)
+						
+						Group {
+							Image("chart")
+								.resizable()
+								.frame(width: 340, height: 250)
+						}
 					}
 					.padding(.top, topPadding + 30)
 					.padding(.horizontal, horizontalPadding + 10)

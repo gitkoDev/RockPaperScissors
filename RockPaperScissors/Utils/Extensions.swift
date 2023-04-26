@@ -36,7 +36,7 @@ extension View {
 struct settingsButtonsDarkModifier: ViewModifier {
 	func body(content: Content) -> some View {
 		content
-			.font(.custom("JosefinSansRoman-Semibold", size: 22))
+			.font(.custom("JosefinSansRoman-Semibold", size: 20))
 			.foregroundColor(.textDarkPrimary)
 	}
 }
@@ -44,7 +44,7 @@ struct settingsButtonsDarkModifier: ViewModifier {
 struct settingsButtonsLightModifier: ViewModifier {
 	func body(content: Content) -> some View {
 		content
-			.font(.custom("JosefinSansRoman-Medium", size: 22))
+			.font(.custom("JosefinSansRoman-Medium", size: 20))
 			.foregroundColor(.textLightPrimary)
 	}
 }
