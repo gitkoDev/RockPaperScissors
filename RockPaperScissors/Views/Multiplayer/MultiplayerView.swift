@@ -21,6 +21,7 @@ struct MultiplayerView: View {
 					HStack {
 						Spacer()
 						
+//						MARK: Players' score
 						Text("\(viewsSettings.leftSideScoreMultiplayer) : \(viewsSettings.rightSideScoreMultiplayer)")
 				.font(.custom("JosefinSansRoman-Light", size: 35).weight(.medium))
 								.foregroundColor(.white)
@@ -36,6 +37,8 @@ struct MultiplayerView: View {
 					.padding(.top, 20)
 					
 					Spacer()
+					
+//					MARK: Battleboard itself
 					
 					HStack {
 						ObjectsStack(viewsSettings: viewsSettings, gameMode: $gameMode, playerSide: .constant(.left))

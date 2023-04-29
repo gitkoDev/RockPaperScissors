@@ -171,13 +171,12 @@ class ViewsSettings: ObservableObject {
 	//	MARK: Multiplayer related methods
 	
 	func chooseObjectsMultiplayer(playerSide: PlayerSides, chosenObject: ChoiceOptions) {
-				leftSideChoice = chosenObject.rawValue
-				rightSideChoice = chosenObject.rawValue
-		
 //		Player cannot choose more than one object at a time
 		if playerSide == .left {
+			leftSideChoice = chosenObject.rawValue
 			areLeftChoiceButtonsDisabledMultiplayer = true
 		} else if playerSide == .right {
+			rightSideChoice = chosenObject.rawValue
 			areRightChoiceButtonsDisabledMultiplayer = true
 		}
 		
@@ -190,7 +189,6 @@ class ViewsSettings: ObservableObject {
 		
 		if !leftSideChoice.isEmpty && !rightSideChoice.isEmpty {
 			decideOutcomeMultiplayer(leftObj: leftSideChoice, rightObj: rightSideChoice)
-//			print("not empty", leftSideChoice, rightSideChoice)
 		}
 	}
 	

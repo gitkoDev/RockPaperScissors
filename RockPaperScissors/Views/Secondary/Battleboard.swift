@@ -64,7 +64,7 @@ struct Battleboard: View {
 													.resizable()
 													.frame(width: 80, height: 80)
 													.offset(x: viewsSettings.leftObjectOffset)
-												Spacer().frame(width: 100)
+												Spacer().frame(width: 70)
 				
 				
 												Image(viewsSettings.rightSideChoice)
