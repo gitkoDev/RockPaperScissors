@@ -24,7 +24,7 @@ struct ObjectsStack: View {
 							viewsSettings.chooseAnObjectSingleplayer(leftObj: obj, rightObj: ChoiceOptions.allCases.randomElement()!)
 					} label: {
 	// Change the buttons styling depending on whether the toggle is on
-						Image(viewsSettings.isToggleOn ? obj.rawValue + "Alt" : obj.rawValue)
+						Image(obj.rawValue)
 							.resizable()
 					}
 					.disabled(viewsSettings.areChoiceButtonsDisabledSingleplayer)
@@ -53,7 +53,7 @@ struct ObjectsStack: View {
 					Button {
 						viewsSettings.chooseObjectsMultiplayer(playerSide: playerSide!.wrappedValue, chosenObject: obj)
 					} label: {
-						Image(viewsSettings.isToggleOn ? obj.rawValue + "Alt" : obj.rawValue)
+						Image(obj.rawValue)
 							.resizable()
 					}
 					.disabled(playerSide!.wrappedValue == .left ?

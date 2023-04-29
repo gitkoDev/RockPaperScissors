@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-class ViewsSettings: ObservableObject {
-	@AppStorage("isToggleOn") var isToggleOn: Bool = false
-	
+class ViewsSettings: ObservableObject {	
 	enum GameModes: String {
 		case singleplayer
 		case multiplayer
@@ -86,14 +84,8 @@ class ViewsSettings: ObservableObject {
 	//	MARK: Singleplayer related methods
 	
 	func chooseAnObjectSingleplayer(leftObj: ChoiceOptions, rightObj: ChoiceOptions) {
-		//		Change battleboard images style if the toggle has been switched
-		if !isToggleOn {
 			leftSideChoice = leftObj.rawValue
 			rightSideChoice = rightObj.rawValue
-		} else {
-			leftSideChoice = leftObj.rawValue + "Alt"
-			rightSideChoice = rightObj.rawValue + "Alt"
-		}
 		
 		//		Player cannot choose more than one object at a time
 		areChoiceButtonsDisabledSingleplayer = true
@@ -179,20 +171,8 @@ class ViewsSettings: ObservableObject {
 	//	MARK: Multiplayer related methods
 	
 	func chooseObjectsMultiplayer(playerSide: PlayerSides, chosenObject: ChoiceOptions) {
-		//		Change battleboard images style if the toggle has been switched
-		if !isToggleOn {
-			if playerSide == .left {
 				leftSideChoice = chosenObject.rawValue
-			} else {
 				rightSideChoice = chosenObject.rawValue
-			}
-		} else {
-			if playerSide == .left {
-				leftSideChoice = chosenObject.rawValue + "Alt"
-			} else {
-				rightSideChoice = chosenObject.rawValue + "Alt"
-			}
-		}
 		
 //		Player cannot choose more than one object at a time
 		if playerSide == .left {

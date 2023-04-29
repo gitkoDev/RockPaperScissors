@@ -76,13 +76,7 @@ struct SettingsView: View {
 						}
 					}
 
-					HStack {
-						Text("Alternative mode")
-							.modifier(settingsButtonsLightModifier())
-						Spacer()
-						ToggleButton(viewsSettings: viewsSettings)
-					}
-					.padding(.horizontal, textHorizontalPadding)
+
 					
 					Spacer()
 					

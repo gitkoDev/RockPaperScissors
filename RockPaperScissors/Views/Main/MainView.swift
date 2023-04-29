@@ -97,7 +97,8 @@ struct MenuButtons: ViewModifier {
 			.foregroundColor(Color(red: 1, green: 1, blue: 1))
 		.padding(35)
 		.padding(.horizontal, 10)
-		.background(viewsSettings.isToggleOn ? Color.buttonsBackgroundAlt : Color.buttonsBackground)
+//		.background(viewsSettings.isToggleOn ? Color.buttonsBackgroundAlt : Color.buttonsBackground)
+		.background(Color.buttonsBackground)
 		.background(Rectangle().fill(.black))
 		.cornerRadius(10)
 

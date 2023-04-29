@@ -26,11 +26,12 @@ struct DismissButton: View {
 						.background(
 							ZStack {
 								Circle()
-									.fill(
-										viewsSettings.isToggleOn ?
-										Color.buttonsBackground
-										: Color.buttonsBackground
-									)
+//									.fill(
+//										viewsSettings.isToggleOn ?
+//										Color.buttonsBackground
+//										: Color.buttonsBackground
+//									)
+									.fill(Color.buttonsBackground)
 							
 									.frame(width: 40, height: 40)
 								

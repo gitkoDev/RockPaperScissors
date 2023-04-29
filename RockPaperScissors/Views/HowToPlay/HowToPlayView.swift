@@ -44,6 +44,7 @@ struct HowToPlayView: View {
 							Text("This is not the rock, paper, scissors game that everybody knows. Instead, you will be given 2 more objects to choose from, which means twice the fun!")
 								.multilineTextAlignment(.center)
 								.modifier(settingsButtonsLightModifier())
+								.font(.custom("JosefinSansRoman-Medium", size: 16))
 								.lineSpacing(6)
 						}
 						.padding(.bottom)

@@ -11,12 +11,8 @@ struct BackgroundColor: View {
 	@ObservedObject var viewsSettings: ViewsSettings
 	
     var body: some View {
-			if viewsSettings.isToggleOn {
-					Image("grid")
-					.resizable(resizingMode: .tile)
-			} else {
 				Color.background
-			}
+
 				
     }
 }

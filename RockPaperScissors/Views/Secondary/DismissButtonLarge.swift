@@ -21,9 +21,10 @@ struct DismissButtonLarge: View {
 					.font(.largeTitle)
 					.background(
 						RoundedRectangle(cornerRadius: 10)
-							.fill(viewsSettings.isToggleOn ?
-										Color.accentPrimary
-										: Color.buttonsBackground)
+//							.fill(viewsSettings.isToggleOn ?
+//										Color.accentPrimary
+//										: Color.buttonsBackground)
+							.fill(Color.buttonsBackground)
 							.frame(width: 65, height: 65)
 							.shadow(radius: 3)
 					)
