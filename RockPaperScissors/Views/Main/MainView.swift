@@ -27,12 +27,14 @@ struct MainView: View {
 				.padding(.horizontal, 20)
 				
 				GeometryReader { geo in
-					Image("scissors")
+					Image("mainViewImage")
 						.resizable()
 						.scaledToFit()
-						.frame(width: geo.size.width * 0.5)
+						.frame(width: geo.size.width * 0.7)
 						.frame(width: geo.size.width)
+						.frame(height: geo.size.height)
 				}
+//				.background(.red)
 				
 //				MARK: Game mode buttons
 				
@@ -97,7 +99,6 @@ struct MenuButtons: ViewModifier {
 			.foregroundColor(Color(red: 1, green: 1, blue: 1))
 		.padding(35)
 		.padding(.horizontal, 10)
-//		.background(viewsSettings.isToggleOn ? Color.buttonsBackgroundAlt : Color.buttonsBackground)
 		.background(Color.buttonsBackground)
 		.background(Rectangle().fill(.black))
 		.cornerRadius(10)

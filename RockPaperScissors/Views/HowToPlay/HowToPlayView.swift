@@ -53,6 +53,7 @@ struct HowToPlayView: View {
 							Image("allObjects")
 								.resizable()
 								.scaledToFit()
+								.frame(width: 300)
 								.padding(.horizontal, 15)
 							Text("Play alone or with friends in order to resolve your disputes and enjoy a fresh twist to the original game.")
 								.multilineTextAlignment(.center)

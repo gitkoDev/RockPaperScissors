@@ -64,7 +64,7 @@ struct Battleboard: View {
 													.resizable()
 													.frame(width: 80, height: 80)
 													.offset(x: viewsSettings.leftObjectOffset)
-												Spacer().frame(width: 70)
+												Spacer().frame(width: 25)
 				
 				
 												Image(viewsSettings.rightSideChoice)
@@ -72,7 +72,7 @@ struct Battleboard: View {
 													.frame(width: 80, height: 80)
 													.offset(x: viewsSettings.rightObjectOffset)
 											}
-											.frame(width: gameMode == .multiplayer ? 350 : 350)
+											.frame(width: gameMode == .multiplayer ? 325 : 350)
 											.frame(height: gameMode == .multiplayer ? 250 : 220)
 											.background(.ultraThinMaterial.opacity(1))
 											.background(viewsSettings.battleboardBG)
@@ -124,13 +124,15 @@ struct Battleboard: View {
 										}
 									} else if timerStarted && viewsSettings.multiplayerTimerSecondsLeft <= 0 && viewsSettings.multiplayerTimerSecondsLeft >= -3 {
 											Text("Go!")
-												.modifier(settingsTitleModifier())
+											.font(.custom("JosefinSansRoman-Bold", size: 50))
+											.foregroundColor(.blue)
 												.offset(y: -70)
 												.opacity(viewsSettings.multiplayerTimerSecondsLeft < 0 ? 0 : 1)
 									}
 									else {
 										Text("\(viewsSettings.multiplayerTimerSecondsLeft)")
-											.modifier(settingsTitleModifier())
+											.font(.custom("JosefinSansRoman-Bold", size: 50))
+											.foregroundColor(.blue)
 									}
 							}
 					}

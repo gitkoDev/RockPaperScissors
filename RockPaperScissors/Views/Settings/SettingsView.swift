@@ -42,19 +42,23 @@ struct SettingsView: View {
 						Text("Settings")
 						.padding(.top, topPadding + 30)
 							.modifier(settingsTitleModifier())
-					
-//					Image("spock")
-//								 .resizable()
-//								 .frame(idealWidth: 140, maxWidth: 140, idealHeight: 140, maxHeight: 140)
 
 					GeometryReader { geo in
-							Image("lizard")
+							Image("mainViewImageAlt")
 							.resizable()
 							.scaledToFit()
-							.frame(width: geo.size.width * 0.3)
+							.frame(width: geo.size.width * 0.7)
 							.frame(width: geo.size.width, height: geo.size.height)
 					}
+					.padding(0)
 //					.background(.red)
+					
+//					Image("mainViewImageAlt")
+//												.resizable()
+//												.scaledToFit()
+//												.frame(width: 300)
+////												.frame(width: geo.size.width * 0.7)
+////												.frame(width: geo.size.width, height: geo.size.height)
 					
 //					MARK: Top buttons
 					
