@@ -51,14 +51,6 @@ struct SettingsView: View {
 							.frame(width: geo.size.width, height: geo.size.height)
 					}
 					.padding(0)
-//					.background(.red)
-					
-//					Image("mainViewImageAlt")
-//												.resizable()
-//												.scaledToFit()
-//												.frame(width: 300)
-////												.frame(width: geo.size.width * 0.7)
-////												.frame(width: geo.size.width, height: geo.size.height)
 					
 //					MARK: Top buttons
 					
@@ -69,9 +61,9 @@ struct SettingsView: View {
 							Text("How to play")
 								.modifier(settingsButtonsLightModifier())
 							Spacer()
-							Image(systemName: "arrow.right.circle.fill")
+							Image(systemName: "arrowshape.right.fill")
 								.foregroundColor(.blue)
-								.font(.title2)
+								.font(.subheadline)
 							
 						}
 						.padding(.horizontal, textHorizontalPadding)
@@ -81,6 +73,23 @@ struct SettingsView: View {
 					}
 
 
+					Button {
+						showHowToPlayModal.toggle()
+					} label: {
+						HStack {
+							Text("About this game")
+								.modifier(settingsButtonsLightModifier())
+							Spacer()
+							Image(systemName: "arrowshape.right.fill")
+								.foregroundColor(.blue)
+								.font(.subheadline)
+							
+						}
+						.padding(.horizontal, textHorizontalPadding)
+						.fullScreenCover(isPresented: $showHowToPlayModal) {
+							HowToPlayView()
+						}
+					}
 					
 					Spacer()
 					

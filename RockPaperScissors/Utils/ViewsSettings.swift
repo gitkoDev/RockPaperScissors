@@ -27,6 +27,9 @@ class ViewsSettings: ObservableObject {
 //	MARK: Multiplayer specific properties
 	@Published var leftSideScoreMultiplayer = 0
 	@Published var rightSideScoreMultiplayer = 0
+	@Published var leftSideScoreMultiplayerBackground: Color = Color(red: 0.7, green: 0.7, blue: 0.7)
+	@Published var rightSideScoreMultiplayerBackground: Color = Color(red: 0.7, green: 0.7, blue: 0.7)
+	
 	
 	enum ChoiceButtonsBackgroundVariants: String {
 		case enabled = "Background1"
@@ -132,14 +135,12 @@ class ViewsSettings: ObservableObject {
 		}
 	}
 	
-
-	
 	func animateRoundSingleplayer() {
-		battleboardAnimation(outcome: outcome)
+		battleboardAnimationSingleplayer(outcome: outcome)
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationTimerDelay) {
 			self.outcome = .NotStarted
-			self.battleboardAnimation(outcome: self.outcome)
+			self.battleboardAnimationSingleplayer(outcome: self.outcome)
 			self.leftObjectOffset = -130
 			self.rightObjectOffset = 130
 			
@@ -167,6 +168,29 @@ class ViewsSettings: ObservableObject {
 		animateRoundSingleplayer()
 	}
 	
+	func battleboardAnimationSingleplayer(outcome: RoundOutcomes) {
+		withAnimation(.easeIn(duration: 0.2)) {
+			chosenObjectScaleSingleplayer = CGSize(width: 0.85, height: 0.85)
+			self.buttonsShadow = 0
+		}
+		
+		withAnimation(.easeOut(duration: 1)) {
+			
+			switch outcome {
+			case .LeftSideWins:
+				battleboardBG = .victoryBackround
+			case .RightSideWins:
+				battleboardBG = .defeatBackground
+			case .Draw:
+				battleboardBG = .drawBackground
+			default:
+				battleboardBG = .white.opacity(0)
+			}
+			
+			leftObjectOffset = 0
+			rightObjectOffset = 0
+		}
+	}
 	
 	//	MARK: Multiplayer related methods
 	
@@ -185,7 +209,7 @@ class ViewsSettings: ObservableObject {
 			self.rightSideChoice = ""
 		}
 		
-		animateRoundMultiplayer(playerSide: playerSide)
+		battleboardAnimationsMultiplayer(playerSide: playerSide)
 		
 		if !leftSideChoice.isEmpty && !rightSideChoice.isEmpty {
 			decideOutcomeMultiplayer(leftObj: leftSideChoice, rightObj: rightSideChoice)
@@ -202,7 +226,7 @@ class ViewsSettings: ObservableObject {
 				rightSideWinsMultiplayer()
 			}
 		} else if leftObj == ChoiceOptions.Paper.rawValue {
-			if rightObj == ChoiceOptions.Paper.rawValue || rightObj == ChoiceOptions.Spock.rawValue {
+			if rightObj == ChoiceOptions.Rock.rawValue || rightObj == ChoiceOptions.Spock.rawValue {
 				leftSideWinsMultiplayer()
 			} else {
 				rightSideWinsMultiplayer()
@@ -230,17 +254,39 @@ class ViewsSettings: ObservableObject {
 	
 	func leftSideWinsMultiplayer() {
 		leftSideScoreMultiplayer += 1
+		animateRoundMultiplayer(outcome: .LeftSideWins)
 	}
 	
 	func rightSideWinsMultiplayer() {
 		rightSideScoreMultiplayer += 1
+		animateRoundMultiplayer(outcome: .RightSideWins)
 	}
 	
 	func finishedInAdrawMultiplayer() {
-		
+		animateRoundMultiplayer(outcome: .Draw)
 	}
 	
-	func animateRoundMultiplayer(playerSide: PlayerSides) {
+	func animateRoundMultiplayer(outcome: RoundOutcomes) {
+		withAnimation(.easeOut(duration: 0.5)) {
+			switch outcome {
+			case .LeftSideWins:
+				leftSideScoreMultiplayerBackground = .victoryBackround
+				rightSideScoreMultiplayerBackground = .defeatBackground
+			case .RightSideWins:
+				leftSideScoreMultiplayerBackground = .defeatBackground
+				rightSideScoreMultiplayerBackground = .victoryBackround
+			case .Draw:
+				leftSideScoreMultiplayerBackground = .drawBackground
+				rightSideScoreMultiplayerBackground = .drawBackground
+			default:
+				leftSideScoreMultiplayerBackground = Color(red: 0.7, green: 0.7, blue: 0.7)
+				rightSideScoreMultiplayerBackground = Color(red: 0.7, green: 0.7, blue: 0.7)
+			}
+		}
+
+	}
+	
+	func battleboardAnimationsMultiplayer(playerSide: PlayerSides) {
 		withAnimation(.easeOut(duration: 0.7)) {
 			if playerSide == .left {
 				leftObjectOffset = 0
@@ -268,36 +314,10 @@ class ViewsSettings: ObservableObject {
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationTimerDelay) {
 			self.leftObjectOffset = -130
 			self.rightObjectOffset = 130
-		}
-	}
-	
-	func battleboardAnimationMultiplayer() {
-		leftObjectOffset = -100
-		rightObjectOffset = -100
-	}
-
-	
-	func battleboardAnimation(outcome: RoundOutcomes) {
-		withAnimation(.easeIn(duration: 0.2)) {
-			chosenObjectScaleSingleplayer = CGSize(width: 0.85, height: 0.85)
-			self.buttonsShadow = 0
-		}
-		
-		withAnimation(.easeOut(duration: 1)) {
 			
-			switch outcome {
-			case .LeftSideWins:
-				battleboardBG = .victoryBackround
-			case .RightSideWins:
-				battleboardBG = .defeatBackground
-			case .Draw:
-				battleboardBG = .drawBackground
-			default:
-				battleboardBG = .white.opacity(0)
-			}
+			self.outcome = .NotStarted
+			self.animateRoundMultiplayer(outcome: self.outcome)
 			
-			leftObjectOffset = 0
-			rightObjectOffset = 0
 		}
 	}
 	

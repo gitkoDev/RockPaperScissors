@@ -22,13 +22,24 @@ struct MultiplayerView: View {
 						Spacer()
 						
 //						MARK: Players' score
-						Text("\(viewsSettings.leftSideScoreMultiplayer) : \(viewsSettings.rightSideScoreMultiplayer)")
-				.font(.custom("JosefinSansRoman-Light", size: 35).weight(.medium))
-								.foregroundColor(.white)
-								.padding()
-								.background(
-									RoundedRectangle(cornerRadius: 15).fill(Color(red: 0.7, green: 0.7, blue: 0.7))
-								)
+						HStack {
+							Text("\(viewsSettings.leftSideScoreMultiplayer)")
+								.modifier(ScoreModifier(backgroundColor: viewsSettings.leftSideScoreMultiplayerBackground))
+								
+							Text(":")
+								.font(.custom("JosefinSansRoman-Light", size: 35).weight(.medium))
+																.foregroundColor(.white)
+																.background(
+																	RoundedRectangle(cornerRadius: 15).fill(Color(red: 0.7, green: 0.7, blue: 0.7))
+																)
+							Text("\(viewsSettings.rightSideScoreMultiplayer)")
+								.modifier(ScoreModifier(backgroundColor: viewsSettings.rightSideScoreMultiplayerBackground))
+						}
+						.background(
+							RoundedRectangle(cornerRadius: 15).fill(Color(red: 0.7, green: 0.7, blue: 0.7))
+						)
+						
+						
 
 						Spacer()
 						DismissButton()
@@ -61,4 +72,20 @@ struct AgainstPlayerView_Previews: PreviewProvider {
     static var previews: some View {
 			MultiplayerView()
     }
+}
+
+struct ScoreModifier: ViewModifier {
+	var backgroundColor: Color
+	
+	func body(content: Content) -> some View {
+		content
+		.font(.custom("JosefinSansRoman-Light", size: 35).weight(.medium))
+		.foregroundColor(.white)
+									.padding()
+									.padding(.horizontal)
+									.background(
+										RoundedRectangle(cornerRadius: 15)
+											.fill(backgroundColor)
+									)
+	}
 }

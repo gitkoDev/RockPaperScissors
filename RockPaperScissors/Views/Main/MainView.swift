@@ -32,7 +32,6 @@ struct MainView: View {
 						.scaledToFit()
 						.frame(width: geo.size.width * 0.7)
 						.frame(width: geo.size.width)
-						.frame(height: geo.size.height)
 				}
 //				.background(.red)
 				
@@ -97,13 +96,13 @@ struct MenuButtons: ViewModifier {
 	func body(content: Content) -> some View {
 		content
 			.foregroundColor(Color(red: 1, green: 1, blue: 1))
-		.padding(35)
+		.padding(32)
 		.padding(.horizontal, 10)
 		.background(Color.buttonsBackground)
 		.background(Rectangle().fill(.black))
 		.cornerRadius(10)
 
-		.font(.custom("JosefinSansRoman-Bold", size: 22))
+		.font(.custom("JosefinSansRoman-Bold", size: 20))
 		.padding(.all, 2.5)
 
 		.background(
